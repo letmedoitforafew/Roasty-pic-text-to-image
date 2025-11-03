@@ -10,12 +10,14 @@ import {
 } from '@google/genai';
 import {GenerateVideoParams, GenerationMode} from '../types';
 
+const API_KEY = 'AIzaSyD9TUckkiHpX3cHTz1aImH227pOZTtv3Ko';
+
 export const generateVideo = async (
   params: GenerateVideoParams,
 ): Promise<{objectUrl: string; blob: Blob; uri: string; video: Video}> => {
   console.log('Starting video generation with params:', params);
 
-  const ai = new GoogleGenAI({apiKey: process.env.API_KEY});
+  const ai = new GoogleGenAI({apiKey: API_KEY});
 
   const config: any = {
     numberOfVideos: 1,
@@ -131,7 +133,7 @@ export const generateVideo = async (
     const url = decodeURIComponent(videoObject.uri);
     console.log('Fetching video from:', url);
 
-    const res = await fetch(`${url}&key=${process.env.API_KEY}`);
+    const res = await fetch(`${url}&key=${API_KEY}`);
 
     if (!res.ok) {
       throw new Error(`Failed to fetch video: ${res.status} ${res.statusText}`);

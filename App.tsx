@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
 */
 import {Video} from '@google/genai';
-import React, {useCallback, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import Footer from './components/Footer';
 import {
   RoastyPitLogoIcon,
@@ -70,15 +70,17 @@ const App: React.FC = () => {
           errorMessageContent.includes('404') ||
           errorMessageContent
             .toLowerCase()
-            .includes('requested entity was not found')
+            .includes('requested entity was not found') ||
+          errorMessageContent.toLowerCase().includes('api key must be set') ||
+          errorMessageContent.toLowerCase().includes('api key not valid')
         ) {
           finalErrorMessage = (
             <>
-              The provided API key appears to be invalid or lacks permissions
-              for Veo.
+              The API key appears to be invalid or lacks permissions for Veo.
               <p className="mt-4 text-sm text-red-400/80">
-                Please ensure your API key is from a Google Cloud project with
-                billing enabled. For instructions, visit the{' '}
+                Please ensure the key is correct and associated with a Google
+                Cloud project that has billing enabled. For instructions, visit
+                the{' '}
                 <a
                   href="https://ai.google.dev/gemini-api/docs/billing"
                   target="_blank"
@@ -223,111 +225,116 @@ const App: React.FC = () => {
 
   return (
     <div className="h-screen text-gray-200 flex flex-col overflow-hidden">
-      {infoDialogContent && (
-        <InfoDialog title={infoDialogContent.title} onClose={() => setInfoDialogContent(null)}>
-          {infoDialogContent.content}
-        </InfoDialog>
-      )}
-
-      <header className="py-4 px-8 relative z-10 shrink-0 flex justify-center items-center">
-        <div className="flex items-center gap-4">
-          <RoastyPitLogoIcon className="w-14 h-14 text-orange-400 logo-glow-animation" />
-          <h1 className="text-5xl font-bold tracking-tight text-center bg-gradient-to-r from-amber-300 via-orange-500 to-red-600 bg-clip-text text-transparent">
-            RoastyPit
-          </h1>
-        </div>
-      </header>
-
-      <div className="w-full max-w-7xl mx-auto flex-grow flex flex-col justify-center items-center p-4 overflow-hidden">
-        <main className="w-full flex-grow flex flex-col justify-center items-center">
-          {appState === AppState.IDLE ? (
-            <div className="w-full h-full flex flex-col items-center pt-8 overflow-y-auto">
-              <div className="text-center mb-8 max-w-3xl mx-auto px-4">
-                <h2 className="text-4xl lg:text-5xl font-bold tracking-tight bg-gradient-to-r from-amber-200 to-orange-400 bg-clip-text text-transparent mb-4">
-                  Generate Viral Video Roasts
-                </h2>
-                <p className="text-lg text-slate-400">
-                  Turn any idea into a viral masterpiece. Just describe your
-                  scene, and let our AI do the rest.
-                </p>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 max-w-4xl mx-auto px-4">
-                <div className="bg-slate-800/50 p-6 rounded-2xl border border-slate-700/80 transform hover:scale-105 hover:border-orange-500/80 transition-all duration-300">
-                  <div className="flex justify-center items-center mb-4 w-12 h-12 rounded-full bg-orange-900/50 mx-auto text-orange-400">
-                    <TextModeIcon className="w-6 h-6" />
-                  </div>
-                  <h3 className="text-xl font-semibold text-white mb-2">
-                    1. Write Your Roast
-                  </h3>
-                  <p className="text-slate-400 text-sm">
-                    Describe the scene. Be specific, be witty, be savage. The AI
-                    loves detail.
-                  </p>
-                </div>
-                <div className="bg-slate-800/50 p-6 rounded-2xl border border-slate-700/80 transform hover:scale-105 hover:border-orange-500/80 transition-all duration-300">
-                  <div className="flex justify-center items-center mb-4 w-12 h-12 rounded-full bg-orange-900/50 mx-auto text-orange-400">
-                    <SlidersHorizontalIcon className="w-6 h-6" />
-                  </div>
-                  <h3 className="text-xl font-semibold text-white mb-2">
-                    2. Adjust the Settings
-                  </h3>
-                  <p className="text-slate-400 text-sm">
-                    Choose your format, quality, and generation mode for the
-                    perfect burn.
-                  </p>
-                </div>
-                <div className="bg-slate-800/50 p-6 rounded-2xl border border-slate-700/80 transform hover:scale-105 hover:border-orange-500/80 transition-all duration-300">
-                  <div className="flex justify-center items-center mb-4 w-12 h-12 rounded-full bg-orange-900/50 mx-auto text-orange-400">
-                    <ShareIcon className="w-6 h-6" />
-                  </div>
-                  <h3 className="text-xl font-semibold text-white mb-2">
-                    3. Go Viral
-                  </h3>
-                  <p className="text-slate-400 text-sm">
-                    Generate your video, download it, and share your glorious
-                    roast with the world.
-                  </p>
-                </div>
-              </div>
-
-              <div className="w-full max-w-3xl mx-auto mt-auto px-4 pb-4">
-                <div className="text-center text-xs text-slate-500 mb-4 px-4">
-                  Our AI is trained for comedy, not cruelty. Please keep prompts
-                  light-hearted and fun. Let's create roasts, not riots!
-                </div>
-                <PromptForm
-                  onGenerate={handleGenerate}
-                  initialValues={initialFormValues}
-                />
-              </div>
-            </div>
-          ) : (
-            <div className="flex-grow flex items-center justify-center">
-              {appState === AppState.LOADING && <LoadingIndicator />}
-              {appState === AppState.SUCCESS && videoUrl && (
-                <VideoResult
-                  videoUrl={videoUrl}
-                  videoBlob={lastVideoBlob}
-                  onRetry={handleRetry}
-                  onNewVideo={handleNewVideo}
-                  onExtend={handleExtend}
-                  canExtend={lastConfig?.resolution === Resolution.P720}
-                />
-              )}
-              {appState === AppState.SUCCESS &&
-                !videoUrl &&
-                renderError(
-                  'Video generated, but URL is missing. Please try again.',
-                )}
-              {appState === AppState.ERROR &&
-                errorMessage &&
-                renderError(errorMessage)}
-            </div>
+        <>
+          {infoDialogContent && (
+            <InfoDialog
+              title={infoDialogContent.title}
+              onClose={() => setInfoDialogContent(null)}>
+              {infoDialogContent.content}
+            </InfoDialog>
           )}
-        </main>
-      </div>
-      <Footer onShowDialog={handleShowDialog} />
+
+          <header className="py-4 px-8 relative z-10 shrink-0 flex justify-center items-center">
+            <div className="flex items-center gap-4">
+              <RoastyPitLogoIcon className="w-14 h-14 text-orange-400 logo-glow-animation" />
+              <h1 className="text-5xl font-bold tracking-tight text-center bg-gradient-to-r from-amber-300 via-orange-500 to-red-600 bg-clip-text text-transparent">
+                RoastyPit
+              </h1>
+            </div>
+          </header>
+
+          <div className="w-full max-w-7xl mx-auto flex-grow flex flex-col justify-center items-center p-4 overflow-hidden">
+            <main className="w-full flex-grow flex flex-col justify-center items-center">
+              {appState === AppState.IDLE ? (
+                <div className="w-full h-full flex flex-col items-center pt-8 overflow-y-auto">
+                  <div className="text-center mb-8 max-w-3xl mx-auto px-4">
+                    <h2 className="text-4xl lg:text-5xl font-bold tracking-tight bg-gradient-to-r from-amber-200 to-orange-400 bg-clip-text text-transparent mb-4">
+                      Generate Viral Video Roasts
+                    </h2>
+                    <p className="text-lg text-slate-400">
+                      Turn any idea into a viral masterpiece. Just describe your
+                      scene, and let our AI do the rest.
+                    </p>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 max-w-4xl mx-auto px-4">
+                    <div className="bg-slate-800/50 p-6 rounded-2xl border border-slate-700/80 transform hover:scale-105 hover:border-orange-500/80 transition-all duration-300">
+                      <div className="flex justify-center items-center mb-4 w-12 h-12 rounded-full bg-orange-900/50 mx-auto text-orange-400">
+                        <TextModeIcon className="w-6 h-6" />
+                      </div>
+                      <h3 className="text-xl font-semibold text-white mb-2">
+                        1. Write Your Roast
+                      </h3>
+                      <p className="text-slate-400 text-sm">
+                        Describe the scene. Be specific, be witty, be savage.
+                        The AI loves detail.
+                      </p>
+                    </div>
+                    <div className="bg-slate-800/50 p-6 rounded-2xl border border-slate-700/80 transform hover:scale-105 hover:border-orange-500/80 transition-all duration-300">
+                      <div className="flex justify-center items-center mb-4 w-12 h-12 rounded-full bg-orange-900/50 mx-auto text-orange-400">
+                        <SlidersHorizontalIcon className="w-6 h-6" />
+                      </div>
+                      <h3 className="text-xl font-semibold text-white mb-2">
+                        2. Adjust the Settings
+                      </h3>
+                      <p className="text-slate-400 text-sm">
+                        Choose your format, quality, and generation mode for
+                        the perfect burn.
+                      </p>
+                    </div>
+                    <div className="bg-slate-800/50 p-6 rounded-2xl border border-slate-700/80 transform hover:scale-105 hover:border-orange-500/80 transition-all duration-300">
+                      <div className="flex justify-center items-center mb-4 w-12 h-12 rounded-full bg-orange-900/50 mx-auto text-orange-400">
+                        <ShareIcon className="w-6 h-6" />
+                      </div>
+                      <h3 className="text-xl font-semibold text-white mb-2">
+                        3. Go Viral
+                      </h3>
+                      <p className="text-slate-400 text-sm">
+                        Generate your video, download it, and share your
+                        glorious roast with the world.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="w-full max-w-3xl mx-auto mt-auto px-4 pb-4">
+                    <div className="text-center text-xs text-slate-500 mb-4 px-4">
+                      Our AI is trained for comedy, not cruelty. Please keep
+                      prompts light-hearted and fun. Let's create roasts, not
+                      riots!
+                    </div>
+                    <PromptForm
+                      onGenerate={handleGenerate}
+                      initialValues={initialFormValues}
+                    />
+                  </div>
+                </div>
+              ) : (
+                <div className="flex-grow flex items-center justify-center">
+                  {appState === AppState.LOADING && <LoadingIndicator />}
+                  {appState === AppState.SUCCESS && videoUrl && (
+                    <VideoResult
+                      videoUrl={videoUrl}
+                      videoBlob={lastVideoBlob}
+                      onRetry={handleRetry}
+                      onNewVideo={handleNewVideo}
+                      onExtend={handleExtend}
+                      canExtend={lastConfig?.resolution === Resolution.P720}
+                    />
+                  )}
+                  {appState === AppState.SUCCESS &&
+                    !videoUrl &&
+                    renderError(
+                      'Video generated, but URL is missing. Please try again.',
+                    )}
+                  {appState === AppState.ERROR &&
+                    errorMessage &&
+                    renderError(errorMessage)}
+                </div>
+              )}
+            </main>
+          </div>
+          <Footer onShowDialog={handleShowDialog} />
+        </>
     </div>
   );
 };
