@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
 */
 import {Video} from '@google/genai';
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import Footer from './components/Footer';
 import {CurvedArrowDownIcon, RoastyPitLogoIcon} from './components/icons';
 import InfoDialog from './components/InfoDialog';
@@ -58,22 +58,7 @@ const App: React.FC = () => {
       const errorMessage =
         error instanceof Error ? error.message : 'An unknown error occurred.';
 
-      let userFriendlyMessage = `Video generation failed: ${errorMessage}`;
-
-      if (typeof errorMessage === 'string') {
-        if (errorMessage.includes('Requested entity was not found.')) {
-          userFriendlyMessage =
-            'Model not found. This can be caused by an invalid API key or permission issues. Please check your API key.';
-        } else if (
-          errorMessage.includes('API_KEY_INVALID') ||
-          errorMessage.includes('API key not valid') ||
-          errorMessage.toLowerCase().includes('permission denied')
-        ) {
-          userFriendlyMessage =
-            'Your API key is invalid or lacks permissions. Please ensure a valid, billing-enabled API key is configured.';
-        }
-      }
-
+      const userFriendlyMessage = `Video generation failed: ${errorMessage}`;
       setErrorMessage(userFriendlyMessage);
       setAppState(AppState.ERROR);
     }
@@ -224,12 +209,10 @@ const App: React.FC = () => {
             <>
               <div className="flex-grow flex items-center justify-center">
                 <div className="relative text-center">
-                  <>
-                    <h2 className="text-3xl text-gray-500">
-                      Type in the prompt box to start
-                    </h2>
-                    <CurvedArrowDownIcon className="absolute top-full left-1/2 -translate-x-1/2 mt-4 w-24 h-24 text-slate-700 opacity-60" />
-                  </>
+                  <h2 className="text-3xl text-gray-500">
+                    Type in the prompt box to start
+                  </h2>
+                  <CurvedArrowDownIcon className="absolute top-full left-1/2 -translate-x-1/2 mt-4 w-24 h-24 text-slate-700 opacity-60" />
                 </div>
               </div>
               <div className="w-full pb-4">
