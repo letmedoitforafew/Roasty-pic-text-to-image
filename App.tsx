@@ -5,7 +5,12 @@
 import {Video} from '@google/genai';
 import React, {useCallback, useState} from 'react';
 import Footer from './components/Footer';
-import {CurvedArrowDownIcon, RoastyPitLogoIcon} from './components/icons';
+import {
+  RoastyPitLogoIcon,
+  ShareIcon,
+  SlidersHorizontalIcon,
+  TextModeIcon,
+} from './components/icons';
 import InfoDialog from './components/InfoDialog';
 import LoadingIndicator from './components/LoadingIndicator';
 import PromptForm from './components/PromptForm';
@@ -22,7 +27,9 @@ import {
 const App: React.FC = () => {
   const [appState, setAppState] = useState<AppState>(AppState.IDLE);
   const [videoUrl, setVideoUrl] = useState<string | null>(null);
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [errorMessage, setErrorMessage] = useState<React.ReactNode | null>(
+    null,
+  );
   const [lastConfig, setLastConfig] = useState<GenerateVideoParams | null>(
     null,
   );
@@ -36,7 +43,7 @@ const App: React.FC = () => {
   const [initialFormValues, setInitialFormValues] =
     useState<GenerateVideoParams | null>(null);
 
-  const showStatusError = (message: string) => {
+  const showStatusError = (message: React.ReactNode) => {
     setErrorMessage(message);
     setAppState(AppState.ERROR);
   };
@@ -55,11 +62,39 @@ const App: React.FC = () => {
       setAppState(AppState.SUCCESS);
     } catch (error) {
       console.error('Video generation failed:', error);
-      const errorMessage =
-        error instanceof Error ? error.message : 'An unknown error occurred.';
+      let finalErrorMessage: React.ReactNode = 'An unknown error occurred.';
 
-      const userFriendlyMessage = `Video generation failed: ${errorMessage}`;
-      setErrorMessage(userFriendlyMessage);
+      if (error instanceof Error) {
+        const errorMessageContent = error.message;
+        if (
+          errorMessageContent.includes('404') ||
+          errorMessageContent
+            .toLowerCase()
+            .includes('requested entity was not found')
+        ) {
+          finalErrorMessage = (
+            <>
+              The provided API key appears to be invalid or lacks permissions
+              for Veo.
+              <p className="mt-4 text-sm text-red-400/80">
+                Please ensure your API key is from a Google Cloud project with
+                billing enabled. For instructions, visit the{' '}
+                <a
+                  href="https://ai.google.dev/gemini-api/docs/billing"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-semibold underline hover:text-orange-300">
+                  billing documentation
+                </a>
+                .
+              </p>
+            </>
+          );
+        } else {
+          finalErrorMessage = `Video generation failed: ${errorMessageContent}`;
+        }
+      }
+      setErrorMessage(finalErrorMessage);
       setAppState(AppState.ERROR);
     }
   }, []);
@@ -124,10 +159,10 @@ const App: React.FC = () => {
     }
   }, [lastConfig, lastVideoBlob, lastVideoObject]);
 
-  const renderError = (message: string) => (
-    <div className="text-center bg-red-900/20 border border-red-500 p-8 rounded-2xl">
+  const renderError = (message: React.ReactNode) => (
+    <div className="text-center bg-red-900/20 border border-red-500 p-8 rounded-2xl max-w-2xl">
       <h2 className="text-2xl font-bold text-red-400 mb-4">Error</h2>
-      <p className="text-red-300">{message}</p>
+      <div className="text-red-300">{message}</div>
       <button
         onClick={handleTryAgainFromError}
         className="mt-6 px-6 py-2 bg-orange-600 rounded-lg hover:bg-orange-700 transition-colors font-semibold">
@@ -206,22 +241,67 @@ const App: React.FC = () => {
       <div className="w-full max-w-7xl mx-auto flex-grow flex flex-col justify-center items-center p-4 overflow-hidden">
         <main className="w-full flex-grow flex flex-col justify-center items-center">
           {appState === AppState.IDLE ? (
-            <>
-              <div className="flex-grow flex items-center justify-center">
-                <div className="relative text-center">
-                  <h2 className="text-3xl text-gray-500">
-                    Type in the prompt box to start
-                  </h2>
-                  <CurvedArrowDownIcon className="absolute top-full left-1/2 -translate-x-1/2 mt-4 w-24 h-24 text-slate-700 opacity-60" />
+            <div className="w-full h-full flex flex-col items-center pt-8 overflow-y-auto">
+              <div className="text-center mb-8 max-w-3xl mx-auto px-4">
+                <h2 className="text-4xl lg:text-5xl font-bold tracking-tight bg-gradient-to-r from-amber-200 to-orange-400 bg-clip-text text-transparent mb-4">
+                  Generate Viral Video Roasts
+                </h2>
+                <p className="text-lg text-slate-400">
+                  Turn any idea into a viral masterpiece. Just describe your
+                  scene, and let our AI do the rest.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 max-w-4xl mx-auto px-4">
+                <div className="bg-slate-800/50 p-6 rounded-2xl border border-slate-700/80 transform hover:scale-105 hover:border-orange-500/80 transition-all duration-300">
+                  <div className="flex justify-center items-center mb-4 w-12 h-12 rounded-full bg-orange-900/50 mx-auto text-orange-400">
+                    <TextModeIcon className="w-6 h-6" />
+                  </div>
+                  <h3 className="text-xl font-semibold text-white mb-2">
+                    1. Write Your Roast
+                  </h3>
+                  <p className="text-slate-400 text-sm">
+                    Describe the scene. Be specific, be witty, be savage. The AI
+                    loves detail.
+                  </p>
+                </div>
+                <div className="bg-slate-800/50 p-6 rounded-2xl border border-slate-700/80 transform hover:scale-105 hover:border-orange-500/80 transition-all duration-300">
+                  <div className="flex justify-center items-center mb-4 w-12 h-12 rounded-full bg-orange-900/50 mx-auto text-orange-400">
+                    <SlidersHorizontalIcon className="w-6 h-6" />
+                  </div>
+                  <h3 className="text-xl font-semibold text-white mb-2">
+                    2. Adjust the Settings
+                  </h3>
+                  <p className="text-slate-400 text-sm">
+                    Choose your format, quality, and generation mode for the
+                    perfect burn.
+                  </p>
+                </div>
+                <div className="bg-slate-800/50 p-6 rounded-2xl border border-slate-700/80 transform hover:scale-105 hover:border-orange-500/80 transition-all duration-300">
+                  <div className="flex justify-center items-center mb-4 w-12 h-12 rounded-full bg-orange-900/50 mx-auto text-orange-400">
+                    <ShareIcon className="w-6 h-6" />
+                  </div>
+                  <h3 className="text-xl font-semibold text-white mb-2">
+                    3. Go Viral
+                  </h3>
+                  <p className="text-slate-400 text-sm">
+                    Generate your video, download it, and share your glorious
+                    roast with the world.
+                  </p>
                 </div>
               </div>
-              <div className="w-full pb-4">
+
+              <div className="w-full max-w-3xl mx-auto mt-auto px-4 pb-4">
+                <div className="text-center text-xs text-slate-500 mb-4 px-4">
+                  Our AI is trained for comedy, not cruelty. Please keep prompts
+                  light-hearted and fun. Let's create roasts, not riots!
+                </div>
                 <PromptForm
                   onGenerate={handleGenerate}
                   initialValues={initialFormValues}
                 />
               </div>
-            </>
+            </div>
           ) : (
             <div className="flex-grow flex items-center justify-center">
               {appState === AppState.LOADING && <LoadingIndicator />}
