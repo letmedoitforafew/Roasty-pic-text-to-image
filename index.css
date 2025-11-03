@@ -1,0 +1,43 @@
+/**
+ * @license
+ * SPDX-License-Identifier: Apache-2.0
+*/
+@keyframes logo-glow {
+  0% {
+    filter: drop-shadow(0 0 2px #fb923c);
+  }
+  50% {
+    filter: drop-shadow(0 0 6px #f97316);
+  }
+  100% {
+    filter: drop-shadow(0 0 2px #fb923c);
+  }
+}
+
+@keyframes progress-bar-fill {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.progress-bar-fill {
+  animation: progress-bar-fill 120s linear forwards;
+  background-image: linear-gradient(to right, #f97316, #fb923c);
+}
+
+.logo-glow-animation {
+    animation: logo-glow 2.5s infinite ease-in-out;
+}
+
+html {
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: #0f172a; /* slate-900 */
+    background-image: radial-gradient(ellipse at bottom, rgba(249, 115, 22, 0.15) 0%, transparent 50%);
+    background-attachment: fixed;
+}
