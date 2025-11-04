@@ -19,6 +19,7 @@ import {generateVideo} from './services/geminiService';
 import {
   AppState,
   ArticleSlug,
+  DialogType,
   GenerateVideoParams,
   GenerationMode,
   Resolution,
@@ -113,7 +114,7 @@ const articlesData: Record<ArticleSlug, { title: string; content: React.ReactNod
             <p>Let’s test it. Here are two versions of a similar idea:</p>
             <p><strong>Boring prompt:</strong> “Make a joke about someone who is late.”</p>
             <p><strong>Funny prompt:</strong> “Roast my friend who shows up late to everything but still asks why we started without him.”</p>
-            <p>See the difference? The second one paints a scene, gives emotion, and sets the stage for humor. That’s the magic of writing a good AI prompt.</p>
+            <p>See the difference? The second one paints a scene, gives emotion, and sets the stage for humor. That’s the magic of a good AI prompt.</p>
             <h2>Tips for Writing Funnier Prompts</h2>
             <p>Ready to level up your comedy writing? Here are some proven tricks to make your AI prompts funnier and more viral:</p>
             <h3>1. Be specific</h3>
@@ -162,52 +163,209 @@ const articlesData: Record<ArticleSlug, { title: string; content: React.ReactNod
     'top-5-viral': {
         title: "Top 5 Viral Videos Made with RoastyPit",
         content: <>
-            <p>RoastyPit transforms simple text prompts into hilarious AI-generated videos. Here are the top 5 viral trends you can try yourself.</p>
-            <img src="https://placehold.co/800x450/1e293b/d97706?text=Viral+Hits" alt="Collage of viral RoastyPit videos" className="my-6 rounded-lg"/>
-            <h2>1. Roast Me for My Gym Routine</h2>
-            <p>Example: “Roast me for going to the gym once and calling myself a fitness influencer.” Perfect for relatable humor.</p>
-            <h2>2. AI Roasts My Life Decisions</h2>
-            <p>Example: “Roast me for thinking I could survive on energy drinks and optimism.” Self-deprecating humor works best.</p>
-            <h2>3. Roast My Pet Like They’re a Celebrity</h2>
-            <p>Example: “Roast my cat like he’s a famous actor with too much attitude.” Cute + funny = viral gold.</p>
-            <h2>4. AI Roasts My Job Interview</h2>
-            <p>Example: “Roast me for saying ‘I’m a people person’ at every job interview.” Perfect for office humor.</p>
-            <h2>5. AI Roasts Humanity</h2>
-            <p>Example: “Roast humanity like you’re an alien watching Earth.” Clever, thought-provoking, and funny.</p>
+            <p><em>By RoastyPit Editorial Team</em></p>
+            <p>Every now and then, a video comes along that makes the entire internet stop scrolling and start laughing. That’s exactly what’s been happening with the explosion of AI-generated comedy — and at the heart of it, <strong>RoastyPit</strong> has been quietly becoming a hub for the funniest, strangest, and most shareable clips online.</p>
+            <p>Whether it’s a talking avocado giving relationship advice or a robot roasting someone’s fashion choices, RoastyPit has turned simple text prompts into viral gold. In this article, we’re diving into the <strong>Top 5 Viral Videos Made with RoastyPit</strong>, breaking down what made them hit so hard — and how you can create your own viral moment, too.</p>
+            
+            <h2>1. “The Coffee Addict’s Intervention” ☕</h2>
+            <img src="https://placehold.co/800x450/1e2d3b/f59e0b?text=Coffee+Roast" alt="Funny AI coffee roast video" className="my-6 rounded-lg"/>
+            <p>This video starts with an AI-generated character standing in a support group, holding a cup of coffee the size of his head. The prompt? “Create a roast video about a guy who says he’s quitting coffee but owns seven coffee makers.”</p>
+            <p>The result was comedy gold. The AI character launches into a mock-serious monologue about caffeine dependence, complete with dramatic background music and slow-motion coffee pours. Viewers loved it because it hit close to home — funny because it’s true.</p>
+            <p><strong>Why it went viral:</strong> relatable humor, strong visuals, and perfect timing. Plus, the tone was friendly and self-aware, not mean-spirited — something advertisers love to see for safe content placement.</p>
+
+            <h2>2. “The Gym Bro Who Never Lifts” 💪</h2>
+            <p>This one was born from the classic friend-roast setup: “Roast a guy who spends more time taking gym selfies than lifting weights.” Within hours of being uploaded to TikTok, the video racked up over 3 million views.</p>
+            <p>The AI-generated character delivered lines dripping with sarcasm: “He’s the only person who can burn calories scrolling through his own photos.” The humor was universal — everyone knows someone like that — and the visual animation gave it that extra viral edge.</p>
+            <p><strong>Takeaway:</strong> The best RoastyPit videos exaggerate real-life behavior. If your idea makes people say, “That’s so true,” you’re halfway to viral status.</p>
+
+            <h2>3. “When Your Cat Becomes Your Therapist” 🐱</h2>
+            <img src="https://placehold.co/800x450/1e2d3b/ef4444?text=Cat+Therapy" alt="AI cat comedy video" className="my-6 rounded-lg"/>
+            <p>Sometimes, the funniest AI videos come from everyday absurdity. This clip began with the prompt: “Make a video where a cat gives life advice in the voice of an emotional support coach.”</p>
+            <p>The result was a hilarious mashup of soft piano music, inspirational quotes, and random meows between sentences. One line — “Remember to chase your dreams the way I chase laser dots” — became an instant meme.</p>
+            <p><strong>Why it went viral:</strong> wholesome absurdity. People love humor that’s weird but comforting, and this hit both notes perfectly. It was shared across Instagram reels, Twitter, and Reddit within days.</p>
+
+            <h2>4. “The Overly Dramatic Breakup” 💔</h2>
+            <p>Every platform has its fair share of breakup videos, but this one stood out. Prompt: “Write a dramatic breakup scene between a man and his Wi-Fi connection.”</p>
+            <p>The AI turned that into a full-on soap opera. The voice acting, music, and pacing felt like a real movie trailer — until you realize the character is crying over losing signal. Lines like “You disconnected when I needed you most” had people quoting it everywhere.</p>
+            <p><strong>Viral factor:</strong> creativity and timing. The video dropped just as people were posting “internet down” memes, making it ultra-shareable. RoastyPit’s flexibility made it easy for creators to produce fast, topical humor — the kind that dominates trends.</p>
+
+            <h2>5. “The Smart Fridge That Knows Too Much” 🧊</h2>
+            <img src="https://placehold.co/800x450/1e2d3b/3b82f6?text=Smart+Fridge" alt="AI smart fridge roast video" className="my-6 rounded-lg"/>
+            <p>This one started as a random idea: “Generate a comedy video where a smart fridge roasts its owner for late-night snacking.” What came out was a perfect storm of sass and self-awareness.</p>
+            <p>The fridge character calls out its owner with lines like: “3 a.m. again? Bro, that’s your fifth slice of pizza. I’m not judging — but your lettuce is.” It was funny, modern, and perfectly suited for short-form video platforms.</p>
+            <p><strong>Why it went viral:</strong> personality. The AI voice had just enough attitude to feel human, and the script struck a perfect tone between humor and realism.</p>
+
+            <h2>What All Viral RoastyPit Videos Have in Common</h2>
+            <p>Looking across all five of these hits, you’ll notice a few things in common. These are the secret ingredients behind viral AI comedy:</p>
+            <ol>
+                <li><strong>They’re relatable.</strong> The humor taps into everyday situations — coffee, Wi-Fi, pets, the gym.</li>
+                <li><strong>They’re short.</strong> Most viral clips are under 45 seconds, making them perfect for social media.</li>
+                <li><strong>They’re creative.</strong> Each video adds a twist to something familiar.</li>
+                <li><strong>They’re shareable.</strong> The jokes make people want to tag friends and say, “This is so you.”</li>
+            </ol>
+            <p>RoastyPit makes this easy because the process is fast. Users can type a few words, generate a clip, and post it instantly — meaning creators can ride trends in real time, just like pro meme accounts and comedians.</p>
+
+            <h2>How to Create a Viral AI Video on RoastyPit</h2>
+            <p>If you’re ready to make your own, here’s a step-by-step guide that successful creators follow:</p>
+            <ol>
+                <li><strong>Start with a simple, funny idea.</strong> It could be a roast, parody, or absurd situation.</li>
+                <li><strong>Use a conversational tone.</strong> Prompts that sound natural lead to funnier results.</li>
+                <li><strong>Add context.</strong> Describe the character or mood. For example, “Make a dramatic scene where a robot argues with its alarm clock.”</li>
+                <li><strong>Keep it short.</strong> One or two sentences is ideal.</li>
+                <li><strong>Share fast.</strong> Post your clip while the idea is still fresh — timing is everything online.</li>
+            </ol>
+            <p>And don’t forget: humor isn’t about perfection. Some of the most viral RoastyPit clips came from random experiments or silly late-night ideas that just clicked with the internet’s sense of humor.</p>
+            
+            <h2>Why AI Comedy Is the Future of Entertainment</h2>
+            <p>For years, people have worried that AI might take over creative industries. But RoastyPit proves something different: AI can enhance creativity instead of replacing it. By giving users tools to express humor in new ways, AI becomes a comedy partner — not a competitor.</p>
+            <p>Creators who understand how to write smart, funny prompts are already using platforms like RoastyPit to grow audiences, build communities, and even monetize their content. The best part? You don’t need expensive gear or editing skills — just an idea and a few clicks.</p>
+
+            <h2>SEO Insight: Why Viral Videos Help Your Brand</h2>
+            <p>Each viral clip acts as free advertising. Every time someone shares a RoastyPit video, they’re driving awareness back to the platform. That’s why humor-based content is so powerful for SEO and AdSense growth — it’s organic engagement that multiplies itself.</p>
+            <p>Even short clips can bring traffic back to your website or social pages. Embedding your <strong>RoastyPit</strong> videos into blog posts like this one also boosts time-on-page and click-through rates, both of which help with search rankings.</p>
+            
+            <h2>Final Thoughts: Anyone Can Go Viral</h2>
+            <p>What makes RoastyPit special is how accessible it is. You don’t need to be a comedian, video editor, or influencer to make people laugh. You just need an idea — and a sense of fun.</p>
+            <p>So if you’ve ever wondered what it feels like to create a viral hit, the answer is simple: try it. Head over to <strong>RoastyPit</strong>, type in your funniest thought, and watch AI turn it into comedy magic. The next big viral video might just have your name on it.</p>
         </>,
     },
     'ai-in-comedy': {
         title: "AI in Comedy: The Future of Funny",
         content: <>
-            <p>Comedy is deeply human, but AI is learning to replicate humor in creative ways. RoastyPit transforms text into funny, shareable videos with realistic expressions, timing, and tone.</p>
-            <img src="https://placehold.co/800x450/1e293b/b45309?text=The+Future+of+Funny" alt="AI-generated comedy video example" className="my-6 rounded-lg"/>
-            <h2>How AI Learned to Laugh</h2>
-            <p>RoastyPit uses natural language processing to understand context, tone, and humor style. It converts your prompt into an AI-generated video with proper comedic timing.</p>
-            <h2>Why AI and Comedy Are a Perfect Match</h2>
+            <p><em>By RoastyPit Editorial Team</em></p>
+            <p>Comedy has always evolved with technology. From vaudeville to stand-up, sitcoms to YouTube, each era has brought new ways to make people laugh. Now, artificial intelligence is the latest frontier — and it’s changing how we create, share, and experience humor. Platforms like <strong>RoastyPit</strong> are at the forefront, turning simple text into funny, shareable videos that feel human and spontaneous.</p>
+            <h2>The Rise of AI-Generated Humor</h2>
+            <p>Artificial intelligence is often associated with efficiency and productivity, but comedy is proving to be a surprisingly natural fit. AI models are capable of understanding language, context, and timing — all essential for humor. With the right prompts, AI can generate witty one-liners, dramatic roasts, and absurd sketches in seconds.</p>
+            <p>This doesn’t mean AI is replacing comedians — far from it. Instead, it’s becoming a tool for creators, amplifying their ideas and allowing them to experiment in ways that were impossible before. For example, a user can type a prompt like:</p>
+            <blockquote>“Roast someone who spends more time scrolling than working out.”</blockquote>
+            <p>And within moments, RoastyPit can generate a full video complete with character animation, voice, and comedic timing. The result feels surprisingly human — a testament to how far AI comedy has come.</p>
+            <h2>Why AI Comedy Works</h2>
+            <p>Humor is complex. It relies on context, cultural understanding, wordplay, and timing. Modern AI models can analyze millions of examples of jokes, videos, and scripts to learn patterns in comedic language. They understand punchlines, irony, exaggeration, and absurdity — the building blocks of funny content.</p>
+            <p>Three main factors make AI comedy successful:</p>
             <ul>
-                <li>Instant creativity</li>
-                <li>Accessibility for everyone</li>
-                <li>Relatability</li>
-                <li>Endless potential</li>
+                <li><strong>Timing:</strong> Comedy often depends on pacing. AI can structure sentences and pauses to enhance the punchline.</li>
+                <li><strong>Relatability:</strong> AI draws from real-life examples and trends, creating content people recognize and enjoy.</li>
+                <li><strong>Creativity:</strong> AI can combine unrelated ideas to produce absurd, surreal, or unexpected humor — often the funniest kind.</li>
             </ul>
+            <h2>AI as a Creative Partner</h2>
+            <img src="https://placehold.co/800x450/1e293b/d97706?text=AI+Comedy+Future" alt="AI Comedy Future" className="my-6 rounded-lg" />
+            <p>Think of AI not as a comedian, but as a creative partner. It doesn’t have feelings or personal experiences, but it can mimic the patterns of human humor. This allows creators to:</p>
+            <ul>
+                <li>Experiment with different styles of jokes.</li>
+                <li>Generate sketches or roasts quickly.</li>
+                <li>Test humor ideas before producing them in full video form.</li>
+            </ul>
+            <p>For example, RoastyPit allows users to type a short prompt and instantly see a fully animated, voiced video. This is particularly useful for social media creators, brands, or anyone who wants to engage an audience with humorous content.</p>
+            <h2>AI Comedy vs. Human Comedy</h2>
+            <p>There’s often skepticism about AI humor. Can a machine truly make us laugh? The answer lies in collaboration. Human comedians provide context, nuance, and cultural insight. AI provides speed, versatility, and creative amplification.</p>
+            <p>Consider this scenario:</p>
+            <ul>
+                <li>A comedian wants to test 10 roast ideas for TikTok.</li>
+                <li>Without AI, they would have to write, record, edit, and refine each video manually.</li>
+                <li>With AI like RoastyPit, they can generate all 10 clips in minutes, then select the best one.</li>
+            </ul>
+            <p>The human guides the humor; AI executes it. The result? More ideas, less effort, and higher chances of virality.</p>
+            <h2>Applications of AI Comedy Today</h2>
+            <p>AI-generated humor isn’t just a novelty. It’s being used in:</p>
+            <ul>
+                <li><strong>Social media content:</strong> Short, funny clips that engage millions of users.</li>
+                <li><strong>Marketing campaigns:</strong> Brands using humor to connect with audiences in fresh, shareable ways.</li>
+                <li><strong>Gaming and entertainment:</strong> Dynamic, interactive humor within games and apps.</li>
+                <li><strong>Education and training:</strong> Light-hearted AI scripts to make learning more fun.</li>
+            </ul>
+            <p>The common thread is engagement. Humor keeps audiences watching, sharing, and interacting — and AI makes creating it faster and easier.</p>
+            <h2>The Ethical Side of AI Humor</h2>
+            <p>With great power comes great responsibility. AI comedy must navigate issues like offensive content, bias, and cultural sensitivity. Platforms like RoastyPit include built-in safeguards to avoid inappropriate jokes while preserving creativity. Users are encouraged to craft playful, relatable, and lighthearted prompts — ensuring that humor stays fun, not harmful.</p>
+            <h2>The Future: Personalized Comedy</h2>
+            <p>The next frontier for AI in comedy is personalization. Imagine AI that understands your style, your favorite topics, and your audience, generating jokes tailored specifically for you. RoastyPit is already moving in this direction, allowing users to experiment with tone, timing, and character style — effectively giving everyone a personal comedy studio.</p>
+            <p>Other potential future applications include:</p>
+            <ul>
+                <li>Interactive comedy bots that respond in real-time.</li>
+                <li>AI-generated improv scenes with audience input.</li>
+                <li>Customized meme and video creation at scale.</li>
+            </ul>
+            <p>Humor may always be human at its core, but AI will increasingly serve as a creative partner — helping us produce funny, engaging content faster, smarter, and more often.</p>
+            <h2>Why RoastyPit Stands Out</h2>
+            <p>RoastyPit isn’t just an AI video generator. It’s designed for comedy from the ground up:</p>
+            <ul>
+                <li>Optimized for humorous prompts and storytelling.</li>
+                <li>Transforms text into voice, character animation, and full scenes.</li>
+                <li>Safe, advertiser-friendly, and perfect for social media virality.</li>
+            </ul>
+            <p>It makes AI comedy accessible to everyone — from casual users wanting to roast friends, to marketers creating engaging campaigns, to creators testing new formats.</p>
+            <h2>Conclusion: A New Era of Humor</h2>
+            <p>AI is revolutionizing comedy, but it isn’t replacing humans. It’s empowering creators to take risks, experiment, and amplify their humor. Platforms like <strong>RoastyPit</strong> are proof that technology and creativity can coexist, resulting in funny, shareable content that keeps audiences engaged.</p>
+            <p>The future of funny is collaborative. It’s humans and AI working together to make laughter faster, smarter, and more personalized than ever before. If you haven’t tried it yet, visit <strong>RoastyPit.com</strong> and see how AI can turn your ideas into hilarious videos that might just go viral.</p>
         </>,
     },
     'behind-the-scenes': {
         title: "Behind the Scenes: How RoastyPit Works",
         content: <>
-            <p>RoastyPit is more than a fun app — it’s a sophisticated AI platform that converts text into short, entertaining videos. This article explores the technology and process behind the laughs.</p>
-            <img src="https://placehold.co/800x450/1e293b/92400e?text=Behind+the+Magic" alt="RoastyPit AI video creation process" className="my-6 rounded-lg"/>
-            <h2>Step 1: Input Your Text Prompt</h2>
-            <p>Your video starts with a prompt: short, funny, and clear. Example: “Roast me like I forgot my homework again.”</p>
-            <h2>Step 2: AI Understands Context and Tone</h2>
-            <p>The AI analyzes humor style, tone, and subject matter to ensure the video feels natural and engaging.</p>
-            <h2>Step 3: Text-to-Video Transformation</h2>
+            <p><em>By RoastyPit Editorial Team</em></p>
+            <p>Have you ever wondered how a simple text prompt can turn into a hilarious AI-generated video? At <strong>RoastyPit</strong>, this is exactly what happens. What looks like magic on the screen is actually a sophisticated blend of AI technology, creative algorithms, and thoughtful design — all built to make comedy accessible and shareable for everyone.</p>
+            <h2>The Origin of RoastyPit</h2>
+            <p>RoastyPit was created with one goal in mind: to make AI-powered humor easy, fast, and fun. Before RoastyPit, generating a funny video required hours of writing, voice recording, animation, and editing. The team behind RoastyPit asked a simple question: <em>What if anyone could create a funny, high-quality video in minutes?</em> That idea sparked the platform you see today.</p>
+            <p>The name “RoastyPit” reflects the playful nature of the platform — a digital space where users can roast ideas, characters, or friends, and see them come alive in a video format. The focus is humor, and every feature is designed to enhance it.</p>
+            <h2>Step 1: User Prompts</h2>
+            <p>Everything begins with the prompt — the words the user enters to describe the roast or idea. This could be as simple as:</p>
+            <blockquote>“Roast someone who spends too much time on social media.”</blockquote>
+            <p>Or something more detailed like:</p>
+            <blockquote>“Create a video where a clumsy AI chef insults his robotic kitchen assistants.”</blockquote>
+            <p>These prompts are the foundation for the AI. The platform analyzes them to determine tone, context, and humor style, ensuring the output aligns with what the user intended.</p>
+            <h2>Step 2: AI Humor Engine</h2>
+            <img src="https://placehold.co/800x450/1e293b/92400e?text=AI+Humor+Engine" alt="RoastyPit AI Engine" className="my-6 rounded-lg"/>
+            <p>Once the prompt is submitted, RoastyPit’s AI Humor Engine takes over. Unlike generic text generators, this engine is fine-tuned for comedy. It:</p>
             <ul>
-                <li>Visual generation: Creates avatars and scenes.</li>
-                <li>Voice synthesis: Natural speech with comedic timing.</li>
-                <li>Expressions & gestures: Human-like performance.</li>
-                <li>Video editing: Seamless final clip.</li>
+                <li><strong>Interprets tone:</strong> Determines whether the content should be sarcastic, playful, or exaggerated.</li>
+                <li><strong>Generates dialogue:</strong> Writes jokes, punchlines, and comedic sequences in natural language.</li>
+                <li><strong>Optimizes humor:</strong> Adjusts timing, pacing, and delivery for maximum comedic effect.</li>
             </ul>
+            <p>The result is text that sounds like a real comedian wrote it — complete with timing, punchlines, and humor style.</p>
+            <h2>Step 3: Text-to-Video Conversion</h2>
+            <p>Next, RoastyPit converts the AI-generated script into a fully animated video. This step involves:</p>
+            <ul>
+                <li><strong>Voice synthesis:</strong> AI-generated voices deliver the dialogue in a human-like, expressive manner.</li>
+                <li><strong>Character animation:</strong> Avatars and digital actors bring jokes to life with gestures, facial expressions, and comedic timing.</li>
+                <li><strong>Scene composition:</strong> Backgrounds, props, and visual effects are added to enhance the humor.</li>
+            </ul>
+            <h2>Step 4: Smart Editing</h2>
+            <p>Timing is everything in comedy. RoastyPit automatically adjusts pacing, pauses, and reactions to make sure jokes land perfectly. Even subtle elements, like a character raising an eyebrow or reacting at the right moment, are included to enhance the comedic impact.</p>
+            <p>This automated editing eliminates the need for users to have technical video skills — the AI handles everything.</p>
+            <h2>Step 5: Safety and Quality Control</h2>
+            <p>AI-generated humor can be unpredictable. RoastyPit uses filters to prevent offensive or inappropriate content, keeping videos advertiser-friendly and safe for all audiences. At the same time, the platform ensures humor remains edgy, witty, and shareable.</p>
+            <p>Each video undergoes an internal review process to maintain quality, so users can confidently share their creations online without worrying about content issues.</p>
+            <h2>Step 6: Sharing and Engagement</h2>
+            <img src="https://placehold.co/800x450/1e293b/92400e?text=Share+Funny+Videos" alt="Sharing RoastyPit AI Videos" className="my-6 rounded-lg"/>
+            <p>Once the video is ready, users can instantly share it on social media platforms like TikTok, Instagram, and YouTube Shorts. The videos are optimized for each platform’s format, maximizing engagement and virality. Fast, funny, and relatable content is key to online success, and RoastyPit makes it effortless.</p>
+            <h2>What Makes RoastyPit Unique?</h2>
+            <p>While there are many AI video generators, RoastyPit stands out because:</p>
+            <ul>
+                <li>It’s built specifically for humor and comedy content.</li>
+                <li>The AI adapts to tone and context, producing natural, human-like jokes.</li>
+                <li>It combines text, voice, animation, and timing into one seamless process.</li>
+                <li>It’s safe for advertisers and audiences alike, allowing creators to monetize content confidently.</li>
+            </ul>
+            <p>In short, RoastyPit turns creative ideas into polished, funny videos faster than any other platform.</p>
+            <h2>The Technology Behind the Curtain</h2>
+            <p>RoastyPit leverages advanced AI technologies:</p>
+            <ul>
+                <li><strong>Natural Language Processing (NLP):</strong> Understands prompts and generates humorous text.</li>
+                <li><strong>Text-to-Speech:</strong> Converts dialogue into expressive voiceovers.</li>
+                <li><strong>Animation AI:</strong> Brings characters and scenes to life based on the script.</li>
+                <li><strong>Optimization algorithms:</strong> Ensure videos are snappy, funny, and engaging.</li>
+            </ul>
+            <p>The combination of these technologies allows anyone — from casual users to marketers — to create high-quality comedy videos with minimal effort.</p>
+            <h2>The Future of RoastyPit</h2>
+            <p>RoastyPit continues to innovate. The platform is working on:</p>
+            <ul>
+                <li>Even more expressive avatars and customizable characters.</li>
+                <li>Real-time AI comedy responses for interactive content.</li>
+                <li>Personalized humor based on user preferences and style.</li>
+            </ul>
+            <p>The goal is to make comedy creation faster, smarter, and more personalized than ever, enabling anyone to produce shareable, hilarious content in minutes.</p>
+            <h2>Conclusion</h2>
+            <p>RoastyPit makes it possible to take a simple idea and turn it into a funny, high-quality video in minutes. By combining AI-powered text generation, voice synthesis, animation, and smart editing, the platform democratizes comedy creation for everyone. Whether you’re a content creator, brand, or casual user, RoastyPit lets your ideas shine in ways that are fast, safe, and incredibly entertaining.</p>
+            <p>Try it for yourself at <strong>RoastyPit.com</strong> — because every great roast starts with just a few words.</p>
         </>,
     },
 };
@@ -224,293 +382,251 @@ const infoPageData = {
         title: "Privacy Policy",
         content: <>
             <p><strong>Effective Date:</strong> November 3, 2025</p>
-            <p>RoastyPit (“we,” “our,” or “us”) respects your privacy and is committed to protecting your personal information. This Privacy Policy explains how we collect, use, and safeguard information when you visit or use our website, RoastyPit.com, a text-to-video generator platform. By using our website, you agree to the terms of this Privacy Policy.</p>
-            
-            <h2>1. Information We Collect</h2>
-            <p>When you use RoastyPit, we may collect the following types of information:</p>
-            <h3>a. Personal Information</h3>
+            <p>Welcome to RoastyPit. We are committed to protecting your privacy. This Privacy Policy explains how we collect, use, and share information about you when you use our service.</p>
+            <h3>1. Information We Collect</h3>
+            <p>We collect information you provide directly to us, such as the text prompts and images you submit for video generation. We also collect technical data about your usage of the service, such as your browser type and IP address, to improve performance and security.</p>
+            <h3>2. How We Use Your Information</h3>
+            <p>We use the information we collect to:</p>
             <ul>
-                <li><strong>Optional registration information:</strong> If you create an account, we may collect your name, email address, and password.</li>
-                <li><strong>User-generated content:</strong> Text prompts you submit to generate videos may be stored temporarily for processing.</li>
+                <li>Generate videos based on your prompts.</li>
+                <li>Improve and optimize our AI models and services.</li>
+                <li>Monitor and analyze trends and usage.</li>
+                <li>Maintain the security and integrity of our platform.</li>
             </ul>
-            <h3>b. Non-Personal Information</h3>
-            <ul>
-                <li><strong>Browser and device information:</strong> IP address, browser type, operating system, device type, and language.</li>
-                <li><strong>Usage data:</strong> Pages visited, time spent on pages, interactions with our service, and video generation activity.</li>
-                <li><strong>Cookies and tracking technologies:</strong> Used to enhance user experience, personalize content, and analyze site traffic.</li>
-            </ul>
-
-            <h2>2. How We Use Your Information</h2>
-            <p>We use the collected information for the following purposes:</p>
-            <ol className="list-decimal list-inside">
-                <li>To provide and improve our text-to-video generator services.</li>
-                <li>To process and store text prompts temporarily to generate videos.</li>
-                <li>To communicate with you about your account or service updates.</li>
-                <li>To analyze user behavior and improve website performance.</li>
-                <li>To personalize content and display relevant features.</li>
-                <li>To comply with legal obligations and prevent fraudulent activity.</li>
-            </ol>
-            
-            <h2>3. Sharing Your Information</h2>
-            <p>We do not sell, trade, or rent your personal information. We may share information in the following cases:</p>
-            <ul>
-                <li><strong>Service Providers:</strong> We may share data with trusted third-party providers who assist in operating our website and services, such as cloud hosting, analytics, and email communication.</li>
-                <li><strong>Legal Requirements:</strong> We may disclose information if required by law, court order, or government regulation.</li>
-                <li><strong>Business Transfers:</strong> In the event of a merger, acquisition, or sale of assets, your data may be transferred as part of the business assets.</li>
-            </ul>
-
-            <h2>4. Cookies and Tracking Technologies</h2>
-            <p>RoastyPit uses cookies and similar tracking technologies to improve your browsing experience, analyze trends, and understand how users interact with our website. You can disable cookies in your browser settings, but some features may not function properly.</p>
-            <p><strong>Common cookies used:</strong></p>
-            <ul>
-                <li>Session cookies for maintaining your login session.</li>
-                <li>Performance cookies to analyze site usage.</li>
-                <li>Functional cookies to enhance website features.</li>
-            </ul>
+            <h3>3. Data Sharing</h3>
+            <p>We do not sell your personal information. We may share your information with third-party service providers who perform services on our behalf, such as cloud hosting. We may also share information if required by law.</p>
+            <h3>4. User-Generated Content</h3>
+            <p>The videos you create are based on your prompts. Please be mindful not to include personal or sensitive information in your prompts. While we employ safety filters, you are responsible for the content you create.</p>
+            <h3>5. Data Security</h3>
+            <p>We implement reasonable security measures to protect your information from unauthorized access, use, or disclosure.</p>
+            <h3>6. Changes to This Policy</h3>
+            <p>We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new policy on this page.</p>
+            <h3>7. Contact Us</h3>
+            <p>If you have any questions about this Privacy Policy, please <a href="#contact">contact us</a>.</p>
         </>
     },
     'terms': {
         title: "Terms of Service",
         content: <>
             <p><strong>Effective Date:</strong> November 3, 2025</p>
-            <p>Welcome to RoastyPit.com. By accessing or using our website, you agree to comply with and be bound by the following terms and conditions of use. Please review these terms carefully.</p>
-
-            <h2>1. Acceptance of Agreement</h2>
-            <p>You agree to the terms and conditions outlined in this Terms of Service Agreement ("Agreement") with respect to our site (the "Site"). This Agreement constitutes the entire and only agreement between us and you, and supersedes all prior or contemporaneous agreements, representations, warranties and understandings with respect to the Site.</p>
-
-            <h2>2. Use of the Site</h2>
-            <p>You are granted a non-exclusive, non-transferable, revocable license to access and use the Site strictly in accordance with this Agreement. As a condition of your use of the Site, you warrant that you will not use the Site for any purpose that is unlawful or prohibited by these terms.</p>
-            
-            <h2>3. Intellectual Property</h2>
-            <p>The content, organization, graphics, design, compilation, and other matters related to the Site are protected under applicable copyrights, trademarks and other proprietary (including but not limited to intellectual property) rights. The copying, redistribution, use or publication by you of any such matters or any part of the Site is strictly prohibited.</p>
-
-            <h2>4. Limitation of Liability</h2>
-            <p>We shall not be liable for any loss, injury, claim, liability, or damage of any kind resulting in any way from your use of the site. We are not responsible for any videos generated using our service. You are responsible for the content you create and share.</p>
+            <p>Welcome to RoastyPit! These Terms of Service ("Terms") govern your use of our website and services. By using RoastyPit, you agree to these Terms.</p>
+            <h3>1. Use of the Service</h3>
+            <p>RoastyPit provides an AI-powered service to generate videos from user prompts. You agree to use our service for creative and entertainment purposes, in compliance with all applicable laws.</p>
+            <h3>2. User-Generated Content</h3>
+            <p>You retain ownership of the prompts you submit. By using the service, you grant RoastyPit a worldwide, non-exclusive, royalty-free license to use, reproduce, and modify your prompts to generate videos and improve our service. You are solely responsible for the content you create and ensuring it does not infringe on any third-party rights.</p>
+            <h3>3. Prohibited Conduct</h3>
+            <p>You agree not to use RoastyPit to create content that is:</p>
+            <ul>
+                <li>Illegal, harmful, or abusive.</li>
+                <li>Infringing on copyright, trademark, or other intellectual property rights.</li>
+                <li>Defamatory, obscene, or pornographic.</li>
+                <li>Spam or unauthorized commercial communications.</li>
+            </ul>
+            <p>We reserve the right to remove content and suspend accounts that violate these terms.</p>
+            <h3>4. Disclaimer of Warranties</h3>
+            <p>The service is provided "as is" without any warranties of any kind. We do not guarantee that the generated videos will meet your expectations or be free of errors.</p>
+            <h3>5. Limitation of Liability</h3>
+            <p>To the fullest extent permitted by law, RoastyPit shall not be liable for any indirect, incidental, special, consequential, or punitive damages, or any loss of profits or revenues, whether incurred directly or indirectly, resulting from your use of the service.</p>
+            <h3>6. Changes to These Terms</h3>
+            <p>We may modify these Terms at any time. We will provide notice of changes by posting the updated Terms on our site. Your continued use of the service after such changes constitutes your acceptance of the new Terms.</p>
+            <h3>7. Contact Us</h3>
+            <p>If you have any questions about these Terms, please <a href="#contact">contact us</a>.</p>
         </>
-    }
+    },
 };
 
-const App: React.FC = () => {
-    const [page, setPage] = useState('home');
-    const [param, setParam] = useState<string | null>(null);
-    const [appState, setAppState] = useState<AppState>(AppState.IDLE);
-    const [videoResult, setVideoResult] = useState<{
-      objectUrl: string;
-      blob: Blob;
-      uri: string;
-      video: Video;
-    } | null>(null);
-    const [lastGenerationParams, setLastGenerationParams] =
-      useState<GenerateVideoParams | null>(null);
-    const [error, setError] = useState<string | null>(null);
-  
-    const [showApiKeyDialog, setShowApiKeyDialog] = useState(false);
-    const [hasCheckedApiKey, setHasCheckedApiKey] = useState(false);
-    const [pendingGenerationParams, setPendingGenerationParams] =
-      useState<GenerateVideoParams | null>(null);
-  
-    // Parse hash route on initial load and on hash change
-    useEffect(() => {
-      const handleHashChange = () => {
-        const { page, param } = parseRoute();
-        setPage(page);
-        setParam(param);
-        window.scrollTo(0, 0);
-      };
-  
-      window.addEventListener('hashchange', handleHashChange);
-      handleHashChange(); // Initial route parse
-  
-      return () => window.removeEventListener('hashchange', handleHashChange);
-    }, []);
-  
-    const resetToHome = () => {
-      window.location.hash = 'home';
-      setAppState(AppState.IDLE);
-      setVideoResult(null);
-      setError(null);
-      // Keep lastGenerationParams so "Retry" can still work if needed,
-      // but clear the video object to avoid re-entering extend mode incorrectly.
-      if (lastGenerationParams) {
-          const { inputVideoObject, ...rest } = lastGenerationParams;
-          setLastGenerationParams(rest);
-      }
-    };
-  
-    const handleGenerate = useCallback(async (params: GenerateVideoParams) => {
-      setLastGenerationParams(params);
-      setPendingGenerationParams(params);
-  
-      // VEO models require a billed API key.
-      if (!hasCheckedApiKey && (params.model === VeoModel.VEO || params.model === VeoModel.VEO_FAST)) {
-        const hasKey = await window.aistudio.hasSelectedApiKey();
-        if (!hasKey) {
-          setHasCheckedApiKey(true); // Mark as checked to prevent infinite loops
-          setShowApiKeyDialog(true);
-          return;
-        }
-      }
-      
-      setAppState(AppState.LOADING);
-      setVideoResult(null);
-      setError(null);
-      window.location.hash = 'home';
-  
-      try {
-        const result = await generateVideo(params);
-        setVideoResult(result);
-        setAppState(AppState.SUCCESS);
-        // Can only extend 720p videos
-        const canExtend = params.resolution === Resolution.P720;
-        let nextParams = {...params};
-        if (canExtend) {
-            nextParams = {
-              ...params,
-              prompt: '',
-              mode: GenerationMode.EXTEND_VIDEO,
-              inputVideoObject: result.video,
-            };
-        }
-        setLastGenerationParams(nextParams);
+export default function App() {
+  const [route, setRoute] = useState(parseRoute());
+  const [appState, setAppState] = useState<AppState>(AppState.IDLE);
+  const [videoUrl, setVideoUrl] = useState<string | null>(null);
+  const [videoBlob, setVideoBlob] = useState<Blob | null>(null);
+  const [lastParams, setLastParams] = useState<GenerateVideoParams | null>(null);
+  const [lastGeneratedVideo, setLastGeneratedVideo] = useState<Video | null>(
+    null,
+  );
+  const [error, setError] = useState<string | null>(null);
+  const [showApiKeyDialog, setShowApiKeyDialog] = useState(false);
+  const [pendingGenerationParams, setPendingGenerationParams] =
+    useState<GenerateVideoParams | null>(null);
 
-      } catch (e) {
-        console.error(e);
-        const errorMessage = e instanceof Error ? e.message : 'An unknown error occurred.';
+  useEffect(() => {
+    const handleHashChange = () => {
+      setRoute(parseRoute());
+    };
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
+  const handleGenerate = useCallback(async (params: GenerateVideoParams) => {
+    if (
+      params.model === VeoModel.VEO ||
+      params.mode === GenerationMode.EXTEND_VIDEO
+    ) {
+      if (window.aistudio && !(await window.aistudio.hasSelectedApiKey())) {
+        setPendingGenerationParams(params);
+        setShowApiKeyDialog(true);
+        return;
+      }
+    }
+    await performGeneration(params);
+  }, []);
+
+  const performGeneration = useCallback(
+    async (params: GenerateVideoParams) => {
+      setAppState(AppState.LOADING);
+      setLastParams(params);
+      setError(null);
+
+      try {
+        const {objectUrl, blob, video} = await generateVideo(params);
+        setVideoUrl(objectUrl);
+        setVideoBlob(blob);
+        setLastGeneratedVideo(video);
+        setAppState(AppState.SUCCESS);
+      } catch (e: unknown) {
+        console.error('Video generation failed:', e);
+        const errorMessage = e instanceof Error ? e.message : String(e);
+
         if (errorMessage.includes('Requested entity was not found')) {
-          setError('API Key is invalid or billing is not enabled. Please select a valid key.');
-          setHasCheckedApiKey(false); // Reset key state to allow re-checking
-          setShowApiKeyDialog(true); // Re-prompt user
-          setAppState(AppState.IDLE); // Go back to idle to allow re-submission
+          setPendingGenerationParams(params);
+          setShowApiKeyDialog(true);
+          setAppState(AppState.IDLE);
         } else {
           setError(errorMessage);
           setAppState(AppState.ERROR);
         }
       }
-    }, [hasCheckedApiKey]);
-  
-    const handleApiKeyContinue = async () => {
-      setShowApiKeyDialog(false);
+    },
+    [],
+  );
+
+  const handleApiKeyDialogContinue = async () => {
+    setShowApiKeyDialog(false);
+    if (window.aistudio) {
       await window.aistudio.openSelectKey();
-      // Assume key selection is successful and proceed with generation.
       if (pendingGenerationParams) {
-        handleGenerate(pendingGenerationParams);
+        await performGeneration(pendingGenerationParams);
+        setPendingGenerationParams(null);
       }
-    };
-  
-  
-    const handleRetry = () => {
-      if (lastGenerationParams) {
-        // When retrying, use the params that led to the result, not the "extend" params.
-        const retryParams = {...lastGenerationParams};
-        if(retryParams.mode === GenerationMode.EXTEND_VIDEO) {
-            // This is a bit tricky. We don't have the original params.
-            // Let's just reset.
-            resetToHome();
-            return;
+    }
+  };
+
+  const handleRetry = useCallback(() => {
+    if (lastParams) {
+      handleGenerate(lastParams);
+    }
+  }, [lastParams, handleGenerate]);
+
+  const handleNewVideo = useCallback(() => {
+    setAppState(AppState.IDLE);
+    setVideoUrl(null);
+    setVideoBlob(null);
+    setLastParams(null);
+    setLastGeneratedVideo(null);
+    setError(null);
+  }, []);
+
+  const handleExtend = useCallback(() => {
+    if (lastGeneratedVideo) {
+      const extendParams = {
+        ...lastParams,
+        mode: GenerationMode.EXTEND_VIDEO,
+        inputVideoObject: lastGeneratedVideo,
+        // Reset frames and references when extending
+        startFrame: null,
+        endFrame: null,
+        referenceImages: [],
+        styleImage: null,
+      };
+      setAppState(AppState.IDLE);
+      setVideoUrl(null);
+      setVideoBlob(null);
+      setError(null);
+      setLastParams(extendParams as GenerateVideoParams); // Set new state for PromptForm
+    }
+  }, [lastGeneratedVideo, lastParams]);
+
+  const renderContent = () => {
+    const { page, param } = route;
+
+    if (page === 'article' && param && articlesData[param as ArticleSlug]) {
+      const { title, content } = articlesData[param as ArticleSlug];
+      return <ArticlePage title={title}>{content}</ArticlePage>;
+    }
+
+    if (page === 'blog') {
+      return <BlogPage />;
+    }
+    
+    if (page === 'contact') {
+      return <ContactPage />;
+    }
+    
+    if (page === 'gallery') {
+      return <GalleryPage />;
+    }
+    
+    if (page === 'howitworks') {
+      return <HowItWorksPage />;
+    }
+    
+    if (infoPageData[page as DialogType]) {
+      const { title, content } = infoPageData[page as DialogType];
+      return <InfoPage title={title}>{content}</InfoPage>;
+    }
+
+    // Default to home page content
+    switch (appState) {
+      case AppState.LOADING:
+        return <LoadingIndicator />;
+      case AppState.SUCCESS:
+        if (videoUrl) {
+          return (
+            <VideoResult
+              videoUrl={videoUrl}
+              videoBlob={videoBlob}
+              onRetry={handleRetry}
+              onNewVideo={handleNewVideo}
+              onExtend={handleExtend}
+              canExtend={
+                lastGeneratedVideo?.resolution === Resolution.P720 &&
+                lastParams?.model === VeoModel.VEO
+              }
+            />
+          );
         }
-        handleGenerate(retryParams);
-      }
-    };
-  
-    const handleExtend = () => {
-      if (lastGenerationParams && lastGenerationParams.mode === GenerationMode.EXTEND_VIDEO) {
-        setAppState(AppState.IDLE);
-        setVideoResult(null);
-        setError(null);
-        // The lastGenerationParams are already set up for extension mode.
-        // The PromptForm will be initialized with these values.
-      }
-    };
-  
-    const renderContent = () => {
-      if (page === 'home') {
+        return null;
+      case AppState.ERROR:
         return (
-          <main className="w-full max-w-4xl mx-auto flex-grow flex flex-col items-center justify-center p-4">
-              <div className="w-full text-center mb-8">
-                  <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-orange-400 to-amber-300 bg-clip-text text-transparent">
-                      Turn Ideas Into Roasts
-                  </h2>
-                  <p className="text-lg text-slate-400 mt-4 max-w-2xl mx-auto">
-                      Just type a prompt and let our AI do the roasting. Create hilarious, shareable videos in seconds.
-                  </p>
-              </div>
-  
-              <div className="w-full flex items-center justify-center min-h-[200px]">
-                  {appState === AppState.IDLE && (
-                      <PromptForm onGenerate={handleGenerate} initialValues={lastGenerationParams} />
-                  )}
-                  {appState === AppState.LOADING && <LoadingIndicator />}
-                  {appState === AppState.SUCCESS && videoResult && (
-                      <VideoResult
-                          videoUrl={videoResult.objectUrl}
-                          videoBlob={videoResult.blob}
-                          onRetry={handleRetry}
-                          onNewVideo={resetToHome}
-                          onExtend={handleExtend}
-                          canExtend={lastGenerationParams?.mode === GenerationMode.EXTEND_VIDEO && lastGenerationParams?.inputVideoObject != null}
-                      />
-                  )}
-                  {appState === AppState.ERROR && (
-                      <div className="text-center p-8 bg-red-900/30 rounded-lg border border-red-800">
-                          <h3 className="text-2xl font-bold text-red-400">An Error Occurred</h3>
-                          <p className="text-red-300 mt-2 max-w-lg">{error}</p>
-                          <div className="mt-6 flex justify-center gap-4">
-                              <button onClick={handleRetry} className="px-6 py-2 bg-slate-600 hover:bg-slate-500 rounded-lg font-semibold">Try Again</button>
-                              <button onClick={resetToHome} className="px-6 py-2 bg-orange-600 hover:bg-orange-500 rounded-lg font-semibold">Start Over</button>
-                          </div>
-                      </div>
-                  )}
-              </div>
-          </main>
+          <div className="text-center p-8 bg-red-900/30 rounded-lg">
+            <h3 className="text-2xl font-bold text-red-400">
+              Something Went Wrong
+            </h3>
+            <p className="text-red-300 mt-2 mb-4 max-w-xl mx-auto">{error}</p>
+            <button
+              onClick={handleRetry}
+              className="px-6 py-2 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-lg transition-colors">
+              Try Again
+            </button>
+          </div>
         );
-      }
-  
-      if (page === 'article' && param && articlesData[param as ArticleSlug]) {
-        const article = articlesData[param as ArticleSlug];
-        return <ArticlePage title={article.title}>{article.content}</ArticlePage>;
-      }
-  
-      if (page === 'blog') {
-          return <BlogPage />;
-      }
-  
-      if (page === 'gallery') {
-          return <GalleryPage />;
-      }
-  
-      if (page === 'howitworks') {
-          return <HowItWorksPage />;
-      }
-  
-      if (page === 'contact') {
-          return <ContactPage />;
-      }
-      
-      const infoPageKey = page as keyof typeof infoPageData;
-      if (infoPageData[infoPageKey]) {
-          const info = infoPageData[infoPageKey];
-          return <InfoPage title={info.title}>{info.content}</InfoPage>;
-      }
-  
-      // Fallback to home if route is unknown, but only if it's not already home.
-      // This prevents a render loop if the initial hash is bad.
-      if (page !== 'home') {
-          window.location.hash = 'home';
-      }
-      return null;
-    };
-  
-  
-    return (
-      <div className="min-h-screen flex flex-col bg-slate-900 text-gray-200">
-        {showApiKeyDialog && <ApiKeyDialog onContinue={handleApiKeyContinue} />}
-        <Header />
-        <div className="flex-grow flex flex-col">
-            {renderContent()}
-        </div>
-        <Footer />
-      </div>
-    );
-  }
-  
-  export default App;
+      case AppState.IDLE:
+      default:
+        return <PromptForm onGenerate={handleGenerate} initialValues={lastParams} />;
+    }
+  };
+
+
+  return (
+    <div className="min-h-screen flex flex-col items-center bg-slate-900 text-gray-200">
+       {showApiKeyDialog && (
+        <ApiKeyDialog onContinue={handleApiKeyDialogContinue} />
+      )}
+      <Header />
+      <main className="w-full max-w-4xl flex-grow p-4 sm:p-8 flex items-center justify-center">
+        {renderContent()}
+      </main>
+      <Footer />
+    </div>
+  );
+}
