@@ -722,21 +722,39 @@ const App: React.FC = () => {
                 <h1 className="text-4xl sm:text-5xl font-bold tracking-tight bg-gradient-to-r from-amber-300 via-orange-500 to-red-600 bg-clip-text text-transparent mb-3">
                   Generate Viral Video Roasts
                 </h1>
-                <div className="flex flex-wrap justify-center gap-3 sm:gap-4 mb-8">
-                  <div className="bg-slate-800/80 border border-slate-700/80 rounded-lg px-4 py-2 text-sm text-slate-300 flex items-center gap-3 transition-all duration-300 hover:scale-105 hover:drop-shadow-[0_0_8px_#f97316]">
-                    <TextModeIcon className="w-5 h-5 text-orange-400 shrink-0" />
-                    <span className="font-bold">1.</span>
-                    <span>Type a roast prompt</span>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8 text-left w-full">
+                  <div className="bg-slate-800/80 border border-slate-700/80 rounded-lg p-4 flex gap-4 items-start transition-all duration-300 hover:scale-105 hover:drop-shadow-[0_0_8px_#f97316]">
+                    <TextModeIcon className="w-6 h-6 text-orange-400 shrink-0 mt-1" />
+                    <div>
+                      <h3 className="font-semibold text-white">
+                        <span className="font-bold">1.</span> Type a Roast Prompt
+                      </h3>
+                      <p className="text-sm text-slate-400 mt-1">
+                        Describe the video you want to create.
+                      </p>
+                    </div>
                   </div>
-                  <div className="bg-slate-800/80 border border-slate-700/80 rounded-lg px-4 py-2 text-sm text-slate-300 flex items-center gap-3 transition-all duration-300 hover:scale-105 hover:drop-shadow-[0_0_8px_#f97316]">
-                    <SlidersHorizontalIcon className="w-5 h-5 text-orange-400 shrink-0" />
-                    <span className="font-bold">2.</span>
-                    <span>Choose your settings</span>
+                  <div className="bg-slate-800/80 border border-slate-700/80 rounded-lg p-4 flex gap-4 items-start transition-all duration-300 hover:scale-105 hover:drop-shadow-[0_0_8px_#f97316]">
+                    <SlidersHorizontalIcon className="w-6 h-6 text-orange-400 shrink-0 mt-1" />
+                    <div>
+                      <h3 className="font-semibold text-white">
+                        <span className="font-bold">2.</span> Choose Your Settings
+                      </h3>
+                      <p className="text-sm text-slate-400 mt-1">
+                        Set the model, resolution, and ratio.
+                      </p>
+                    </div>
                   </div>
-                  <div className="bg-slate-800/80 border border-slate-700/80 rounded-lg px-4 py-2 text-sm text-slate-300 flex items-center gap-3 transition-all duration-300 hover:scale-105 hover:drop-shadow-[0_0_8px_#f97316]">
-                    <ArrowRightIcon className="w-5 h-5 text-orange-400 shrink-0" />
-                    <span className="font-bold">3.</span>
-                    <span>Generate your video</span>
+                  <div className="bg-slate-800/80 border border-slate-700/80 rounded-lg p-4 flex gap-4 items-start transition-all duration-300 hover:scale-105 hover:drop-shadow-[0_0_8px_#f97316]">
+                    <ArrowRightIcon className="w-6 h-6 text-orange-400 shrink-0 mt-1" />
+                    <div>
+                      <h3 className="font-semibold text-white">
+                        <span className="font-bold">3.</span> Generate Your Video
+                      </h3>
+                      <p className="text-sm text-slate-400 mt-1">
+                        Click the button and get your roast.
+                      </p>
+                    </div>
                   </div>
                 </div>
                 <PromptForm
