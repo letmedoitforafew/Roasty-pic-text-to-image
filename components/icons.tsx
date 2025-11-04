@@ -5,16 +5,21 @@
 import React from 'react';
 import {
   ArrowDown,
+  ArrowLeft,
   ArrowRight,
   Baseline,
   ChevronDown,
   Download,
   Film,
+  GalleryThumbnails,
   Image,
   KeyRound,
   Layers,
+  Newspaper,
+  Play,
   Plus,
   RefreshCw,
+  Send,
   Share2,
   SlidersHorizontal,
   Sparkles,
@@ -53,6 +58,10 @@ export const SlidersHorizontalIcon: React.FC<React.SVGProps<SVGSVGElement>> = (
 export const ArrowRightIcon: React.FC<React.SVGProps<SVGSVGElement>> = (
   props,
 ) => <ArrowRight {...defaultProps} {...props} />;
+
+export const ArrowLeftIcon: React.FC<React.SVGProps<SVGSVGElement>> = (
+  props,
+) => <ArrowLeft {...defaultProps} {...props} />;
 
 export const RectangleStackIcon: React.FC<React.SVGProps<SVGSVGElement>> = (
   props,
@@ -94,6 +103,22 @@ export const DownloadIcon: React.FC<React.SVGProps<SVGSVGElement>> = (
 export const ShareIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
   <Share2 {...defaultProps} {...props} />
 );
+
+export const SendIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
+  <Send {...defaultProps} {...props} />
+);
+
+export const PlayIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
+  <Play {...defaultProps} {...props} />
+);
+
+export const NewspaperIcon: React.FC<React.SVGProps<SVGSVGElement>> = (
+  props,
+) => <Newspaper {...defaultProps} {...props} />;
+
+export const GalleryThumbnailsIcon: React.FC<React.SVGProps<SVGSVGElement>> = (
+  props,
+) => <GalleryThumbnails {...defaultProps} {...props} />;
 
 export const RoastyPitLogoIcon: React.FC<React.SVGProps<SVGSVGElement>> = (
   props,
