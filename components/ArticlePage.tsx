@@ -3,7 +3,6 @@
  * SPDX-License-Identifier: Apache-2.0
 */
 import React from 'react';
-import AdPlaceholder from './AdPlaceholder';
 import { ArrowLeftIcon, RoastyPitLogoIcon } from './icons';
 
 interface ArticlePageProps {
@@ -27,7 +26,7 @@ const ArticlePage: React.FC<ArticlePageProps> = ({ title, onClose, children }) =
           </h1>
         </button>
         <div className="hidden md:block">
-            <AdPlaceholder label="Header Ad" width={728} height={90} />
+            <img src="https://placehold.co/728x90/1e293b/fb923c?text=Unleash+Your+Inner+Comedian+with+RoastyPit+AI" alt="Advertisement banner for RoastyPit AI video generator" width="728" height="90" className="rounded-lg" />
         </div>
         <button
             onClick={onClose}
@@ -56,8 +55,8 @@ const ArticlePage: React.FC<ArticlePageProps> = ({ title, onClose, children }) =
                 <aside className="lg:col-span-1">
                     <div className="sticky top-4 space-y-6">
                         <h3 className="font-semibold text-slate-400 text-sm tracking-widest uppercase">Advertisement</h3>
-                        <AdPlaceholder label="Skyscraper Ad" width={300} height={600} />
-                        <AdPlaceholder label="Square Ad" width={300} height={250} />
+                        <img src="https://placehold.co/300x600/1e293b/f97316?text=Go+Viral.+AI-Powered+Roasts.+Try+RoastyPit+Today." alt="Vertical skyscraper advertisement for RoastyPit" width="300" height="600" className="rounded-lg mx-auto" />
+                        <img src="https://placehold.co/300x250/1e293b/ea580c?text=Create+Funny+Videos+in+Seconds" alt="Square advertisement for creating funny videos" width="300" height="250" className="rounded-lg mx-auto" />
                     </div>
                 </aside>
             </div>

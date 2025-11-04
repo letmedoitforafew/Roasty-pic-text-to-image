@@ -20,9 +20,9 @@ import {generateVideo} from './services/geminiService';
 import {
   AppState,
   GenerateVideoParams,
+  GenerationMode,
   Resolution,
 } from './types';
-import AdPlaceholder from './components/AdPlaceholder';
 
 const App: React.FC = () => {
   const [appState, setAppState] = useState<AppState>(AppState.IDLE);
@@ -95,8 +95,8 @@ const App: React.FC = () => {
             <li><strong>Choose your style:</strong> Sarcastic, playful, dramatic, or celebrity-inspired.</li>
             <li><strong>Watch the magic happen:</strong> The AI creates a short, funny video you can share instantly.</li>
           </ol>
-
-          <AdPlaceholder label="In-Article Ad" width={300} height={250} />
+          
+          <img src="https://placehold.co/600x300/1e293b/fb923c?text=Your+Viral+Video+Awaits" alt="Advertisement for RoastyPit AI video generator" className="mx-auto my-6 rounded-lg shadow-lg w-full" />
 
           <h3 className="text-2xl font-bold text-orange-400">Why AI Comedy Works So Well</h3>
           <ul className="list-disc list-inside space-y-2">
@@ -156,9 +156,9 @@ const App: React.FC = () => {
   
             <h3 className="text-2xl font-bold text-orange-400">Tip 3: Use Everyday Humor</h3>
             <p>Make your prompts relatable: “Roast me for checking my phone every 3 seconds.”</p>
+            
+            <img src="https://placehold.co/600x300/1e293b/f97316?text=Write+a+Prompt.+Get+a+Roast." alt="Banner ad inviting users to try writing a prompt on RoastyPit" className="mx-auto my-6 rounded-lg shadow-lg w-full" />
   
-            <AdPlaceholder label="In-Article Ad" width={300} height={250} />
-
             <h3 className="text-2xl font-bold text-orange-400">Tip 4: Add Personality and Drama</h3>
             <p>Include tone or mood to make videos expressive: “Roast me like a motivational speaker who just failed a test.”</p>
   
@@ -178,50 +178,52 @@ const App: React.FC = () => {
   
             <h3 className="text-2xl font-bold text-orange-400">Conclusion: Every Great Video Starts With a Great Prompt</h3>
             <p>Creative, short, and relatable prompts are the secret to RoastyPit videos that get laughs and shares.</p>
-            <p><InternalLink slug="top-5-viral">See viral video examples</InternalLink>.</p>
+            <p>
+                <a href="https://roastypit.com" target="_blank" rel="noopener noreferrer" className="text-orange-400 hover:underline font-semibold">Try RoastyPit now</a> or <InternalLink slug="top-5-viral">see viral video examples</InternalLink>.
+            </p>
           </div>
         )
     },
     'top-5-viral': {
         title: '📹 Top 5 Viral Videos Made with RoastyPit',
         content: (
-            <div className="space-y-6">
-              <h3 className="text-2xl font-bold text-orange-400">Introduction: From Text to Viral Fame</h3>
-              <p>RoastyPit transforms simple text prompts into hilarious AI-generated videos. Here are the top 5 viral trends you can try yourself.</p>
-              <ImagePlaceholder alt="Collage of viral RoastyPit videos" />
+          <div className="space-y-6">
+            <h3 className="text-2xl font-bold text-orange-400">Introduction: From Text to Viral Fame</h3>
+            <p>RoastyPit transforms simple text prompts into hilarious AI-generated videos. Here are the top 5 viral trends you can try yourself.</p>
+            <ImagePlaceholder alt="Collage of viral RoastyPit videos" />
+  
+            <h3 className="text-2xl font-bold text-orange-400">1. Roast Me for My Gym Routine</h3>
+            <p>Example: “Roast me for going to the gym once and calling myself a fitness influencer.” Perfect for relatable humor.</p>
+  
+            <h3 className="text-2xl font-bold text-orange-400">2. AI Roasts My Life Decisions</h3>
+            <p>Example: “Roast me for thinking I could survive on energy drinks and optimism.” Self-deprecating humor works best.</p>
+  
+            <h3 className="text-2xl font-bold text-orange-400">3. Roast My Pet Like They’re a Celebrity</h3>
+            <p>Example: “Roast my cat like he’s a famous actor with too much attitude.” Cute + funny = viral gold.</p>
+  
+            <img src="https://placehold.co/600x300/1e293b/ea580c?text=Go+Viral.+Get+Roasted." alt="Advertisement displaying a collage of viral videos made with RoastyPit" className="mx-auto my-6 rounded-lg shadow-lg w-full" />
 
-              <h3 className="text-2xl font-bold text-orange-400">1. Roast Me for My Gym Routine</h3>
-              <p>Example: “Roast me for going to the gym once and calling myself a fitness influencer.” Perfect for relatable humor.</p>
-
-              <h3 className="text-2xl font-bold text-orange-400">2. AI Roasts My Life Decisions</h3>
-              <p>Example: “Roast me for thinking I could survive on energy drinks and optimism.” Self-deprecating humor works best.</p>
-
-              <AdPlaceholder label="In-Article Ad" width={300} height={250} />
-
-              <h3 className="text-2xl font-bold text-orange-400">3. Roast My Pet Like They’re a Celebrity</h3>
-              <p>Example: “Roast my cat like he’s a famous actor with too much attitude.” Cute + funny = viral gold.</p>
-              
-              <h3 className="text-2xl font-bold text-orange-400">4. AI Roasts My Job Interview</h3>
-              <p>Example: “Roast me for saying ‘I’m a people person’ at every job interview.” Perfect for office humor.</p>
-              
-              <h3 className="text-2xl font-bold text-orange-400">5. AI Roasts Humanity</h3>
-              <p>Example: “Roast humanity like you’re an alien watching Earth.” Clever, thought-provoking, and funny.</p>
-              
-              <h3 className="text-2xl font-bold text-orange-400">How to Make Your RoastyPit Video Go Viral</h3>
-              <ul className="list-disc list-inside space-y-2">
-                <li>Start with a funny, specific prompt</li>
-                <li>Keep it short (15–30 seconds)</li>
-                <li>Add your reaction</li>
-                <li>Use trending hashtags</li>
-                <li>Post consistently</li>
-              </ul>
-              <p>
+            <h3 className="text-2xl font-bold text-orange-400">4. AI Roasts My Job Interview</h3>
+            <p>Example: “Roast me for saying ‘I’m a people person’ at every job interview.” Perfect for office humor.</p>
+  
+            <h3 className="text-2xl font-bold text-orange-400">5. AI Roasts Humanity</h3>
+            <p>Example: “Roast humanity like you’re an alien watching Earth.” Clever, thought-provoking, and funny.</p>
+  
+            <h3 className="text-2xl font-bold text-orange-400">How to Make Your RoastyPit Video Go Viral</h3>
+            <ul className="list-disc list-inside space-y-2">
+              <li>Start with a funny, specific prompt</li>
+              <li>Keep it short (15–30 seconds)</li>
+              <li>Add your reaction</li>
+              <li>Use trending hashtags</li>
+              <li>Post consistently</li>
+            </ul>
+            <p>
                 <InternalLink slug="hilarious-prompts">Learn to write hilarious AI prompts</InternalLink> or <InternalLink slug="ai-in-comedy">learn how AI is shaping comedy</InternalLink>.
-              </p>
-
-              <h3 className="text-2xl font-bold text-orange-400">Conclusion: Your Words Could Be the Next Viral Hit</h3>
-              <p>Type your idea, generate a RoastyPit video, and share — your next viral moment could start with a single prompt.</p>
-            </div>
+            </p>
+  
+            <h3 className="text-2xl font-bold text-orange-400">Conclusion: Your Words Could Be the Next Viral Hit</h3>
+            <p>Type your idea, generate a RoastyPit video, and share — your next viral moment could start with a single prompt.</p>
+          </div>
         )
     },
     'ai-in-comedy': {
@@ -234,15 +236,15 @@ const App: React.FC = () => {
 
             <h3 className="text-2xl font-bold text-orange-400">How AI Learned to Laugh</h3>
             <p>RoastyPit uses natural language processing to understand context, tone, and humor style. It converts your prompt into an AI-generated video with proper comedic timing.</p>
-
+  
             <h3 className="text-2xl font-bold text-orange-400">RoastyPit: Where AI Comedy Meets Creativity</h3>
             <p>The platform allows anyone to become a creator — no editing skills needed. Videos feel natural, expressive, and personalized.</p>
-
-            <AdPlaceholder label="In-Article Ad" width={300} height={250} />
-
+  
+            <img src="https://placehold.co/600x300/1e293b/d97706?text=The+Future+of+Funny+is+Here." alt="Promotional image for RoastyPit explaining AI in comedy" className="mx-auto my-6 rounded-lg shadow-lg w-full" />
+  
             <h3 className="text-2xl font-bold text-orange-400">AI Comedy on Social Media</h3>
             <p>From TikTok to YouTube Shorts, AI-generated videos are gaining massive engagement, especially personalized roasts and relatable content.</p>
-
+  
             <h3 className="text-2xl font-bold text-orange-400">Why AI and Comedy Are a Perfect Match</h3>
             <ul className="list-disc list-inside space-y-2">
               <li>Instant creativity</li>
@@ -250,13 +252,15 @@ const App: React.FC = () => {
               <li>Relatability</li>
               <li>Endless potential</li>
             </ul>
-
+  
             <h3 className="text-2xl font-bold text-orange-400">The Future of Funny</h3>
             <p>Expect AI personalities, interactive roasts, hybrid performances, and more sophisticated emotional understanding — all making comedy more accessible and shareable.</p>
+            <p>
+                <InternalLink slug="behind-the-scenes">Learn how RoastyPit works</InternalLink> or <a href="https://roastypit.com" target="_blank" rel="noopener noreferrer" className="text-orange-400 hover:underline font-semibold">try RoastyPit now</a>.
+            </p>
 
             <h3 className="text-2xl font-bold text-orange-400">Conclusion: The Future of Laughter Is Digital</h3>
             <p>RoastyPit allows anyone to turn text into laughter. AI is amplifying creativity, making humor faster, easier, and universally shareable.</p>
-            <p><InternalLink slug="behind-the-scenes">Learn how RoastyPit works</InternalLink>.</p>
           </div>
         )
     },
@@ -270,9 +274,11 @@ const App: React.FC = () => {
 
             <h3 className="text-2xl font-bold text-orange-400">Step 1: Input Your Text Prompt</h3>
             <p>Your video starts with a prompt: short, funny, and clear. Example: “Roast me like I forgot my homework again.”</p>
-
+  
             <h3 className="text-2xl font-bold text-orange-400">Step 2: AI Understands Context and Tone</h3>
             <p>The AI analyzes humor style, tone, and subject matter to ensure the video feels natural and engaging.</p>
+            
+            <img src="https://placehold.co/600x300/1e293b/b45309?text=Simple+Interface.+Powerful+AI." alt="Ad showing the RoastyPit interface and easy video creation" className="mx-auto my-6 rounded-lg shadow-lg w-full" />
 
             <h3 className="text-2xl font-bold text-orange-400">Step 3: Text-to-Video Transformation</h3>
             <ul className="list-disc list-inside space-y-2">
@@ -281,18 +287,7 @@ const App: React.FC = () => {
               <li>Expressions & gestures: Human-like performance.</li>
               <li>Video editing: Seamless final clip.</li>
             </ul>
-
-            <AdPlaceholder label="In-Article Ad" width={300} height={250} />
-
-            <h3 className="text-2xl font-bold text-orange-400">Step 4: Personalization and Style Options</h3>
-            <p>Choose tone, character style, and background to make each video unique.</p>
-
-            <h3 className="text-2xl font-bold text-orange-400">Step 5: Download and Share</h3>
-            <p>Ready-to-share videos for TikTok, Instagram, or YouTube Shorts.</p>
-            <p>
-              <InternalLink slug="hilarious-prompts">Write better AI prompts</InternalLink> or <InternalLink slug="ai-in-comedy">learn about AI in comedy</InternalLink>.
-            </p>
-
+  
             <h3 className="text-2xl font-bold text-orange-400">The Technology That Powers RoastyPit</h3>
             <ul className="list-disc list-inside space-y-2">
               <li>AI text analysis</li>
@@ -300,203 +295,183 @@ const App: React.FC = () => {
               <li>Computer vision & animation</li>
               <li>Cloud processing for fast generation</li>
             </ul>
-
+            <p>
+                <InternalLink slug="hilarious-prompts">Write better AI prompts</InternalLink> or <InternalLink slug="ai-in-comedy">learn about AI in comedy</InternalLink>.
+            </p>
+  
             <h3 className="text-2xl font-bold text-orange-400">Conclusion: From Text to Video, Comedy Made Easy</h3>
             <p>RoastyPit simplifies content creation, turning your ideas into funny, shareable videos with ease. AI amplifies your creativity, letting anyone make people laugh.</p>
           </div>
         )
-    }
+    },
   };
 
-
-  const handleGenerate = async (params: GenerateVideoParams) => {
-    setAppState(AppState.LOADING);
-    setErrorMessage(null);
-    setLastConfig(params);
-
-    try {
-      const result = await generateVideo(params);
-      setVideoUrl(result.objectUrl);
-      setLastVideoObject(result.video);
-      setLastVideoBlob(result.blob);
-      setAppState(AppState.SUCCESS);
-    } catch (e: any) {
-      console.error(e);
-
-      let displayError: React.ReactNode = `An unknown error occurred.`;
-      if (typeof e === 'string') {
-        displayError = e;
-      } else if (e instanceof Error) {
-        displayError = e.message;
-      }
-      setErrorMessage(displayError);
-      setAppState(AppState.ERROR);
-    }
-  };
-
-  const handleRetry = () => {
+  const handleTryAgain = useCallback(() => {
     if (lastConfig) {
-      handleGenerate(lastConfig);
-    }
-  };
-
-  const handleExtend = () => {
-    if (lastVideoObject) {
-      setInitialFormValues({
-        ...lastConfig,
-        mode: 'Extend Video' as any, // Should be GenerationMode.EXTEND_VIDEO
-        prompt: '',
-        inputVideoObject: lastVideoObject,
-        aspectRatio: lastVideoObject.aspectRatio as any,
-        resolution: Resolution.P720,
-      });
+      setInitialFormValues(lastConfig);
       setAppState(AppState.IDLE);
       setVideoUrl(null);
       setErrorMessage(null);
     }
-  };
+  }, [lastConfig]);
 
-  const handleShowDialog = (
-    dialog: 'about' | 'privacy' | 'terms' | 'contact' | 'gallery' | 'howitworks',
-  ) => {
+  const handleSubmit = useCallback(async (params: GenerateVideoParams) => {
+    setAppState(AppState.LOADING);
+    setErrorMessage(null);
+    setVideoUrl(null);
+    setLastConfig(params);
+
+    try {
+      const { objectUrl, blob, video } = await generateVideo(params);
+      setVideoUrl(objectUrl);
+      setLastVideoBlob(blob);
+      setLastVideoObject(video);
+      setAppState(AppState.SUCCESS);
+    } catch (error: unknown) {
+      console.error('Video generation failed:', error);
+      let message = 'An unexpected error occurred during generation.';
+      if (error instanceof Error) {
+        message = error.message;
+      }
+      setErrorMessage(
+        <>
+          <strong>Video generation failed:</strong> {message}
+        </>
+      );
+      setAppState(AppState.ERROR);
+    }
+  }, []);
+
+  const handleExtend = useCallback(() => {
+    if (lastConfig && lastVideoObject) {
+      const extendConfig: GenerateVideoParams = {
+        ...lastConfig,
+        mode: GenerationMode.EXTEND_VIDEO,
+        prompt: '',
+        inputVideoObject: lastVideoObject,
+        startFrame: null,
+        endFrame: null,
+        referenceImages: [],
+        styleImage: null,
+        isLooping: false,
+      };
+      setInitialFormValues(extendConfig);
+      setAppState(AppState.IDLE);
+      setVideoUrl(null);
+      setErrorMessage(null);
+    }
+  }, [lastConfig, lastVideoObject]);
+
+  const handleShowDialog = useCallback((dialog: 'about' | 'privacy' | 'terms' | 'contact' | 'gallery' | 'howitworks') => {
     if (dialog === 'contact') {
       setShowContactPage(true);
-      return;
-    }
-    if (dialog === 'gallery') {
+    } else if (dialog === 'gallery') {
       setShowGalleryPage(true);
-      return;
-    }
-    if (dialog === 'howitworks') {
+    } else if (dialog === 'howitworks') {
       setShowHowItWorksPage(true);
-      return;
+    } else if (dialog === 'about') {
+      setInfoDialogContent({ title: 'About RoastyPit', content: <p>RoastyPit is a demo application showcasing the power of Google's Veo model for text-to-video generation. Create hilarious roasts and share them with your friends!</p> });
+    } else if (dialog === 'privacy') {
+      setInfoDialogContent({ title: 'Privacy Policy', content: <p>This is a demo application. No personal data is stored or collected. All generated content is temporary.</p> });
+    } else if (dialog === 'terms') {
+      setInfoDialogContent({ title: 'Terms of Service', content: <p>By using this demo, you agree not to generate any offensive, harmful, or illegal content. The creators are not responsible for any content generated by users.</p> });
     }
-
-    const content = {
-      about: {
-        title: 'About RoastyPit',
-        content: <p>RoastyPit is a demo application showcasing the power of Google's Veo model for text-to-video generation. Create hilarious AI-powered roast videos and share them with the world.</p>,
-      },
-      privacy: {
-        title: 'Privacy Policy',
-        content: <p>Your privacy is important to us. We do not store any of the videos you create or the prompts you enter. All processing is done in memory and discarded after the video is generated. We do not collect any personal information.</p>,
-      },
-      terms: {
-        title: 'Terms of Service',
-        content: <p>By using RoastyPit, you agree not to create content that is harmful, offensive, or violates any laws. This is a technology demo, and the generated content is for entertainment purposes only. The user is solely responsible for the content they generate and share.</p>,
-      },
-    };
-    setInfoDialogContent(content[dialog]);
-  };
+  }, []);
+  
+  if (activeArticle) {
+    return <ArticlePage title={activeArticle.title} onClose={() => setActiveArticle(null)}>{activeArticle.content}</ArticlePage>
+  }
   
   const renderContent = () => {
     switch (appState) {
-      case AppState.LOADING:
-        return <LoadingIndicator />;
-      case AppState.SUCCESS:
-        if (videoUrl) {
-          return (
-            <VideoResult
-              videoUrl={videoUrl}
-              videoBlob={lastVideoBlob}
-              onRetry={handleRetry}
-              onNewVideo={handleNewVideo}
-              onExtend={handleExtend}
-              canExtend={lastConfig?.resolution === Resolution.P720 && lastConfig.mode !== 'Extend Video' as any}
-            />
-          );
-        }
-        // Fallthrough to error if no videoUrl
-      case AppState.ERROR:
-        return (
-          <div className="text-center p-8 bg-red-900/30 rounded-2xl border border-red-500/50 max-w-2xl">
-            <h2 className="text-2xl font-bold text-red-400">
-              Video Generation Failed
-            </h2>
-            <p className="mt-2 mb-6 text-red-200">{errorMessage}</p>
-            <div className="flex justify-center gap-4">
-              <button
-                onClick={handleRetry}
-                className="px-6 py-2 bg-slate-700 hover:bg-slate-600 text-white font-semibold rounded-lg transition-colors">
-                Try Again
-              </button>
-              <button
-                onClick={handleNewVideo}
-                className="px-6 py-2 bg-orange-600 hover:bg-orange-700 text-white font-semibold rounded-lg transition-colors">
-                New Video
-              </button>
-            </div>
-          </div>
-        );
-      case AppState.IDLE:
-      default:
-        return (
-          <div className="w-full h-full flex flex-col items-center justify-center">
-            <div className="text-center mb-8">
-              <div className="inline-block relative">
-                <RoastyPitLogoIcon className="w-20 h-20 text-orange-400 transition-all duration-300 hover:scale-110 hover:drop-shadow-[0_0_12px_#f97316]" />
-              </div>
-              <h1 className="text-5xl font-bold tracking-tight bg-gradient-to-r from-amber-300 via-orange-500 to-red-600 bg-clip-text text-transparent mt-2">
-                Generate Viral Video Roasts
-              </h1>
-              <p className="text-slate-400 mt-4 max-w-xl mx-auto">
-                Just type what you want to roast, pick a generation mode, and hit the arrow to create your video.
-              </p>
-            </div>
-            <div className="w-full max-w-3xl mx-auto">
-              <PromptForm onGenerate={handleGenerate} initialValues={initialFormValues} />
-              <p className="text-xs text-slate-500 mt-3 text-center px-4">
-                Enter a prompt to start. RoastyPit is for fun, friendly roasts. Please avoid creating offensive content.
-              </p>
-            </div>
-          </div>
-        );
+        case AppState.IDLE:
+            return (
+                <div className="flex flex-col items-center text-center w-full max-w-4xl animate-fade-in">
+                    <button onClick={handleNewVideo} className="group mb-4">
+                        <RoastyPitLogoIcon className="w-24 h-24 text-orange-400 transition-all duration-300 group-hover:scale-110 group-hover:drop-shadow-[0_0_8px_#f97316]" />
+                    </button>
+                    <h1 className="text-4xl sm:text-5xl font-bold tracking-tight bg-gradient-to-r from-amber-300 via-orange-500 to-red-600 bg-clip-text text-transparent mb-3">
+                        Generate Viral Video Roasts
+                    </h1>
+                    <div className="flex flex-wrap justify-center gap-3 sm:gap-4 mb-8">
+                        <div className="bg-slate-800/80 border border-slate-700/80 rounded-lg px-4 py-2 text-sm text-slate-300 flex items-center gap-2 transition-all duration-300 hover:scale-105 hover:drop-shadow-[0_0_8px_#f97316]">
+                            <span className="font-bold text-orange-400">1.</span>
+                            <span>Type a roast prompt</span>
+                        </div>
+                        <div className="bg-slate-800/80 border border-slate-700/80 rounded-lg px-4 py-2 text-sm text-slate-300 flex items-center gap-2 transition-all duration-300 hover:scale-105 hover:drop-shadow-[0_0_8px_#f97316]">
+                            <span className="font-bold text-orange-400">2.</span>
+                            <span>Choose your settings</span>
+                        </div>
+                        <div className="bg-slate-800/80 border border-slate-700/80 rounded-lg px-4 py-2 text-sm text-slate-300 flex items-center gap-2 transition-all duration-300 hover:scale-105 hover:drop-shadow-[0_0_8px_#f97316]">
+                            <span className="font-bold text-orange-400">3.</span>
+                            <span>Generate your video</span>
+                        </div>
+                    </div>
+                    <PromptForm onGenerate={handleSubmit} initialValues={initialFormValues} />
+                    <p className="text-xs text-slate-500 mt-4 max-w-xl">
+                        Type a prompt and choose your settings. RoastyPit is for fun, friendly roasts only—keep it creative, not cruel. Your content must follow our terms of service.
+                    </p>
+                </div>
+            );
+        case AppState.LOADING:
+            return <LoadingIndicator />;
+        case AppState.SUCCESS:
+            if (videoUrl) {
+                return (
+                    <VideoResult
+                        videoUrl={videoUrl}
+                        videoBlob={lastVideoBlob}
+                        onRetry={handleTryAgain}
+                        onNewVideo={handleNewVideo}
+                        onExtend={handleExtend}
+                        canExtend={lastConfig?.resolution === Resolution.P720}
+                    />
+                );
+            }
+            return null;
+        case AppState.ERROR:
+            return (
+                <div className="text-center p-8 bg-red-900/30 rounded-2xl border border-red-500/50 max-w-2xl w-full">
+                    <h2 className="text-2xl font-bold text-red-400">Oh no! Something went wrong.</h2>
+                    <div className="mt-4 text-red-200">{errorMessage}</div>
+                    <div className="mt-8 flex justify-center gap-4">
+                        <button onClick={handleTryAgain} className="px-6 py-2 bg-slate-700 hover:bg-slate-600 rounded-lg font-semibold">Try Again</button>
+                        <button onClick={handleNewVideo} className="px-6 py-2 bg-orange-600 hover:bg-orange-700 rounded-lg font-semibold">Start Over</button>
+                    </div>
+                </div>
+            );
+        default:
+            return null;
     }
   };
 
-  if (activeArticle) {
-    return (
-      <ArticlePage title={activeArticle.title} onClose={() => setActiveArticle(null)}>
-        {activeArticle.content}
-      </ArticlePage>
-    );
-  }
-
   return (
-    <div className="min-h-screen bg-slate-900 flex flex-col">
-      <header className="py-4 px-8 relative z-10 shrink-0">
-        <div className="flex items-center gap-4">
-          <button onClick={handleNewVideo} className="flex items-center gap-4 group" aria-label="Go to homepage">
-            <RoastyPitLogoIcon className="w-10 h-10 text-orange-400 transition-all duration-300 group-hover:scale-110 group-hover:drop-shadow-[0_0_8px_#f97316]" />
-            <h1 className="text-3xl font-bold tracking-tight bg-gradient-to-r from-amber-300 via-orange-500 to-red-600 bg-clip-text text-transparent">
-              RoastyPit
-            </h1>
-          </button>
+    <div className="flex flex-col min-h-screen bg-slate-900 text-white">
+      <main className="flex-grow flex flex-col items-center justify-center p-4 sm:p-8">
+        <div className="w-full max-w-4xl mx-auto flex flex-col items-center">
+          {appState !== AppState.IDLE && !activeArticle && (
+            <div className="mb-8">
+              <button onClick={handleNewVideo} className="flex items-center gap-3 group" aria-label="Go to homepage">
+                <RoastyPitLogoIcon className="w-10 h-10 text-orange-400 transition-all duration-300 group-hover:scale-110 group-hover:drop-shadow-[0_0_8px_#f97316]" />
+                <h1 className="text-3xl font-bold tracking-tight bg-gradient-to-r from-amber-300 via-orange-500 to-red-600 bg-clip-text text-transparent">
+                  RoastyPit
+                </h1>
+              </button>
+            </div>
+          )}
+          {renderContent()}
         </div>
-      </header>
-      <main className="flex-grow flex items-center justify-center p-4 md:p-8">
-        {renderContent()}
       </main>
       <Footer onShowDialog={handleShowDialog} onShowArticle={handleShowArticle} />
 
       {infoDialogContent && (
-        <InfoDialog
-          title={infoDialogContent.title}
-          onClose={() => setInfoDialogContent(null)}
-        >
+        <InfoDialog title={infoDialogContent.title} onClose={() => setInfoDialogContent(null)}>
           {infoDialogContent.content}
         </InfoDialog>
       )}
-
-      {showContactPage && (
-        <ContactPage onClose={() => setShowContactPage(false)} />
-      )}
-      {showGalleryPage && (
-        <GalleryPage onClose={() => setShowGalleryPage(false)} />
-      )}
-      {showHowItWorksPage && (
-        <HowItWorksPage onClose={() => setShowHowItWorksPage(false)} />
-      )}
+      {showContactPage && <ContactPage onClose={() => setShowContactPage(false)} />}
+      {showGalleryPage && <GalleryPage onClose={() => setShowGalleryPage(false)} />}
+      {showHowItWorksPage && <HowItWorksPage onClose={() => setShowHowItWorksPage(false)} />}
     </div>
   );
 };
