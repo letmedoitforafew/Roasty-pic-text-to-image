@@ -130,7 +130,7 @@ const articlesData: Record<ArticleSlug, { title: string; content: React.ReactNod
 const infoPageData = {
     'about': {
         title: "About RoastyPit",
-        content: <p>RoastyPit is a passion project exploring the intersection of AI and comedy. We believe everyone has a funny idea, and our goal is to give you the tools to bring it to life in seconds. Using cutting-edge text-to-video technology, we turn your words into hilarious, shareable roasts.</p>
+        content: <p>RoastyPit is a passion project exploring the intersection of AI and comedy, developed by Gilnetwork and its CEO Roberto Gil. We believe everyone has a funny idea, and our goal is to give you the tools to bring it to life in seconds. Using cutting-edge text-to-video technology, we turn your words into hilarious, shareable roasts.</p>
     },
     'privacy': {
         title: "Privacy Policy",
