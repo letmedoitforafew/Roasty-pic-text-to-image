@@ -16,9 +16,8 @@ import {
   ArrowRightIcon,
   ChevronDownIcon,
   FilmIcon,
-  FlameIcon,
   FramesModeIcon,
-  MegaphoneIcon,
+  GlobeIcon,
   PlusIcon,
   RectangleStackIcon,
   ReferencesModeIcon,
@@ -163,22 +162,23 @@ const ImageUpload: React.FC<{
 const instructionBoxes = [
   {
     icon: <SparklesIcon className="w-6 h-6 text-orange-400" />,
-    title: 'Describe a Scene',
-    description: 'Generate a video from text.',
-    prompt: 'A cinematic shot of a robot grilling hamburgers on Mars.',
-  },
-  {
-    icon: <FlameIcon className="w-6 h-6 text-orange-400" />,
-    title: 'Roast a Friend',
-    description: 'Create a funny roast video.',
-    prompt: 'Roast my friend for thinking he can sing after one karaoke night.',
-  },
-  {
-    icon: <MegaphoneIcon className="w-6 h-6 text-orange-400" />,
-    title: 'Make a Meme',
-    description: 'Create a funny, meme-style video.',
+    title: 'Be Descriptive',
+    description: 'Provide details for better results.',
     prompt:
-      "A dramatic movie trailer for a video about a cat who is slightly annoyed.",
+      'A dramatic close-up of a squirrel realizing it forgot where it buried its nuts.',
+  },
+  {
+    icon: <SlidersHorizontalIcon className="w-6 h-6 text-orange-400" />,
+    title: 'Try Different Modes',
+    description: 'Change generation settings for more control.',
+    prompt: 'A photorealistic video of a cat DJing at a party.',
+  },
+  {
+    icon: <GlobeIcon className="w-6 h-6 text-orange-400" />,
+    title: '¡Habla Español!',
+    description: 'Prompts also work in other languages.',
+    prompt:
+      'Un video de un perro salchicha vestido de pirata navegando en un barco de juguete.',
   },
 ];
 

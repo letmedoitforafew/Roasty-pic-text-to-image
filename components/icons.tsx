@@ -13,6 +13,7 @@ import {
   Film,
   Flame,
   GalleryThumbnails,
+  Globe,
   Image,
   KeyRound,
   Layers,
@@ -101,6 +102,10 @@ export const FlameIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
 export const MegaphoneIcon: React.FC<React.SVGProps<SVGSVGElement>> = (
   props,
 ) => <Megaphone {...defaultProps} {...props} />;
+
+export const GlobeIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
+  <Globe {...defaultProps} {...props} />
+);
 
 // This icon had a different stroke width in the original file, so we preserve it.
 export const CurvedArrowDownIcon: React.FC<React.SVGProps<SVGSVGElement>> = (
