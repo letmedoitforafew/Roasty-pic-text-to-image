@@ -16,16 +16,20 @@ export const articleLinks: {slug: ArticleSlug; title: string}[] = [
   },
 ] as const;
 
-const ArticleLinks: React.FC = () => {
+interface ArticleLinksProps {
+  onShowArticle: (slug: ArticleSlug) => void;
+}
+
+const ArticleLinks: React.FC<ArticleLinksProps> = ({onShowArticle}) => {
   return (
     <ul className="space-y-1.5 text-sm">
       {articleLinks.map((link) => (
         <li key={link.slug}>
-          <a
-            href={`#article/${link.slug}`}
+          <button
+            onClick={() => onShowArticle(link.slug)}
             className="text-slate-300 hover:text-orange-400 transition-colors text-left">
             {link.title}
-          </a>
+          </button>
         </li>
       ))}
     </ul>
