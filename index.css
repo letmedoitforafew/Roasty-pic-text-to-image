@@ -4,13 +4,13 @@
 */
 @keyframes logo-glow {
   0% {
-    filter: drop-shadow(0 0 2px #fb923c);
+    filter: drop-shadow(0 0 4px #fb923c);
   }
   50% {
-    filter: drop-shadow(0 0 6px #f97316);
+    filter: drop-shadow(0 0 12px #f97316);
   }
   100% {
-    filter: drop-shadow(0 0 2px #fb923c);
+    filter: drop-shadow(0 0 4px #fb923c);
   }
 }
 
