@@ -681,21 +681,340 @@ const App: React.FC = () => {
         setInfoDialogContent({
           title: 'Privacy Policy',
           content: (
-            <p>
-              This is a demo application. No personal data is stored or
-              collected. All generated content is temporary.
-            </p>
+            <div className="space-y-4 text-sm">
+              <p>
+                <strong>Effective Date:</strong> November 3, 2025
+              </p>
+              <p>
+                RoastyPit (“we,” “our,” or “us”) respects your privacy and is
+                committed to protecting your personal information. This Privacy
+                Policy explains how we collect, use, and safeguard information
+                when you visit or use our website, <strong>RoastyPit.com</strong>, a
+                text-to-video generator platform. By using our website, you
+                agree to the terms of this Privacy Policy.
+              </p>
+
+              <h3 className="text-lg font-semibold text-white pt-2">
+                1. Information We Collect
+              </h3>
+              <p>
+                When you use RoastyPit, we may collect the following types of
+                information:
+              </p>
+              <h4 className="font-semibold text-white pl-4">
+                a. Personal Information
+              </h4>
+              <ul className="list-disc list-inside pl-6">
+                <li>
+                  <strong>Optional registration information:</strong> If you
+                  create an account, we may collect your name, email address,
+                  and password.
+                </li>
+                <li>
+                  <strong>User-generated content:</strong> Text prompts you
+                  submit to generate videos may be stored temporarily for
+                  processing.
+                </li>
+              </ul>
+              <h4 className="font-semibold text-white pl-4">
+                b. Non-Personal Information
+              </h4>
+              <ul className="list-disc list-inside pl-6">
+                <li>
+                  <strong>Browser and device information:</strong> IP address,
+                  browser type, operating system, device type, and language.
+                </li>
+                <li>
+                  <strong>Usage data:</strong> Pages visited, time spent on
+                  pages, interactions with our service, and video generation
+                  activity.
+                </li>
+                <li>
+                  <strong>Cookies and tracking technologies:</strong> Used to
+                  enhance user experience, personalize content, and analyze
+                  site traffic.
+                </li>
+              </ul>
+
+              <h3 className="text-lg font-semibold text-white pt-2">
+                2. How We Use Your Information
+              </h3>
+              <p>
+                We use the collected information for the following purposes:
+              </p>
+              <ol className="list-decimal list-inside pl-6">
+                <li>
+                  To provide and improve our text-to-video generator services.
+                </li>
+                <li>
+                  To process and store text prompts temporarily to generate
+                  videos.
+                </li>
+                <li>
+                  To communicate with you about your account or service updates.
+                </li>
+                <li>To analyze user behavior and improve website performance.</li>
+                <li>To personalize content and display relevant features.</li>
+                <li>
+                  To comply with legal obligations and prevent fraudulent
+                  activity.
+                </li>
+              </ol>
+
+              <h3 className="text-lg font-semibold text-white pt-2">
+                3. Sharing Your Information
+              </h3>
+              <p>
+                We do <strong>not sell, trade, or rent</strong> your personal
+                information. We may share information in the following cases:
+              </p>
+              <ul className="list-disc list-inside pl-6">
+                <li>
+                  <strong>Service Providers:</strong> We may share data with
+                  trusted third-party providers who assist in operating our
+                  website and services, such as cloud hosting, analytics, and
+                  email communication.
+                </li>
+                <li>
+                  <strong>Legal Requirements:</strong> We may disclose
+                  information if required by law, court order, or government
+                  regulation.
+                </li>
+                <li>
+                  <strong>Business Transfers:</strong> In the event of a merger,
+                  acquisition, or sale of assets, your data may be transferred
+                  as part of the business assets.
+                </li>
+              </ul>
+
+              <h3 className="text-lg font-semibold text-white pt-2">
+                4. Cookies and Tracking Technologies
+              </h3>
+              <p>
+                RoastyPit uses cookies and similar tracking technologies to
+                improve your browsing experience, analyze trends, and understand
+                how users interact with our website. You can disable cookies in
+                your browser settings, but some features may not function
+                properly.
+              </p>
+
+              <h3 className="text-lg font-semibold text-white pt-2">
+                5. Data Retention
+              </h3>
+              <p>
+                We retain your information only as long as necessary to provide
+                our services and comply with legal obligations. Text prompts and
+                generated videos may be temporarily stored during processing but
+                are not permanently linked to personal information unless you
+                choose to save them.
+              </p>
+
+              <h3 className="text-lg font-semibold text-white pt-2">
+                6. Security of Your Information
+              </h3>
+              <p>
+                We implement reasonable administrative, technical, and physical
+                safeguards to protect your information from unauthorized access,
+                disclosure, alteration, or destruction. However, no internet or
+                electronic transmission is 100% secure, and we cannot guarantee
+                absolute security.
+              </p>
+
+              <h3 className="text-lg font-semibold text-white pt-2">
+                7. Third-Party Services
+              </h3>
+              <p>
+                RoastyPit may use third-party services, such as analytics or
+                advertising platforms. These third-party services have their own
+                privacy policies, and we encourage you to review them.
+              </p>
+
+              <h3 className="text-lg font-semibold text-white pt-2">
+                8. Children’s Privacy
+              </h3>
+              <p>
+                RoastyPit does{' '}
+                <strong>
+                  not knowingly collect personal information from children under
+                  the age of 13
+                </strong>
+                . If we become aware that we have inadvertently collected such
+                information, we will take steps to delete it.
+              </p>
+
+              <h3 className="text-lg font-semibold text-white pt-2">
+                9. Your Privacy Rights
+              </h3>
+              <p>
+                Depending on your location, you may have rights regarding your
+                personal information. To exercise any of these rights, please
+                contact us at{' '}
+                <a
+                  href="mailto:support@roastypit.com"
+                  className="text-orange-400 hover:underline">
+                  support@roastypit.com
+                </a>
+                .
+              </p>
+
+              <h3 className="text-lg font-semibold text-white pt-2">
+                10. Changes to This Privacy Policy
+              </h3>
+              <p>
+                We may update this Privacy Policy from time to time. When we
+                make changes, we will update the <strong>“Effective Date”</strong>{' '}
+                at the top and, where required, notify users.
+              </p>
+
+              <h3 className="text-lg font-semibold text-white pt-2">
+                11. Contact Us
+              </h3>
+              <p>
+                If you have questions or concerns, please contact us at{' '}
+                <a
+                  href="mailto:support@roastypit.com"
+                  className="text-orange-400 hover:underline">
+                  support@roastypit.com
+                </a>
+                .
+              </p>
+            </div>
           ),
         });
       } else if (dialog === 'terms') {
         setInfoDialogContent({
           title: 'Terms of Service',
           content: (
+            <div className="space-y-4 text-sm">
             <p>
-              By using this demo, you agree not to generate any offensive,
-              harmful, or illegal content. The creators are not responsible for
-              any content generated by users.
+              <strong>Effective Date:</strong> November 3, 2025
             </p>
+            <p>
+              Welcome to RoastyPit.com (“RoastyPit,” “we,” “our,” or “us”). By
+              accessing or using our website and services, including our
+              text-to-video generator, you agree to be bound by these Terms of
+              Service (“Terms”). Please read them carefully.
+            </p>
+
+            <h3 className="text-lg font-semibold text-white pt-2">
+              1. Use of RoastyPit Services
+            </h3>
+            <ul className="list-disc list-inside pl-4">
+              <li>
+                <strong>Eligibility:</strong> You must be at least 13 years old
+                to use our services.
+              </li>
+              <li>
+                <strong>License:</strong> RoastyPit grants you a limited,
+                non-exclusive, non-transferable license to access and use our
+                website and services for personal, non-commercial purposes.
+              </li>
+              <li>
+                <strong>Prohibited Uses:</strong> You may not violate laws,
+                submit offensive content, or interfere with the website.
+              </li>
+            </ul>
+
+            <h3 className="text-lg font-semibold text-white pt-2">
+              2. User Accounts
+            </h3>
+            <p>
+              You are responsible for maintaining the confidentiality of your
+              login credentials and for all activities that occur under your
+              account. We reserve the right to suspend or terminate your
+              account for violations of these Terms.
+            </p>
+
+            <h3 className="text-lg font-semibold text-white pt-2">
+              3. Content Ownership and License
+            </h3>
+            <p>
+              You retain ownership of the text prompts you submit. By
+              submitting content, you grant us a worldwide, royalty-free
+              license to use your content to provide our services. Videos
+              generated are for personal, non-commercial use only.
+            </p>
+
+            <h3 className="text-lg font-semibold text-white pt-2">
+              4. Privacy
+            </h3>
+            <p>
+              Your use of RoastyPit is subject to our Privacy Policy. By using
+              our services, you consent to our Privacy Policy.
+            </p>
+
+            <h3 className="text-lg font-semibold text-white pt-2">
+              5. Intellectual Property
+            </h3>
+            <p>
+              All website content, including text, graphics, logos, and
+              software, is owned by RoastyPit and protected by copyright laws.
+            </p>
+
+            <h3 className="text-lg font-semibold text-white pt-2">
+              6. Disclaimer of Warranties
+            </h3>
+            <p>
+              RoastyPit provides its services “as is.” We do not guarantee
+              continuous, error-free, or secure access to the website.
+            </p>
+
+            <h3 className="text-lg font-semibold text-white pt-2">
+              7. Limitation of Liability
+            </h3>
+            <p>
+              To the maximum extent permitted by law, RoastyPit is not liable
+              for any direct, indirect, or consequential damages arising from
+              your use of the service.
+            </p>
+
+            <h3 className="text-lg font-semibold text-white pt-2">
+              8. Indemnification
+            </h3>
+            <p>
+              You agree to indemnify and hold harmless RoastyPit from any
+              claims arising from your use of the website or violation of
+              these Terms.
+            </p>
+
+            <h3 className="text-lg font-semibold text-white pt-2">
+              9. Termination
+            </h3>
+            <p>
+              We may suspend or terminate your access to RoastyPit at any
+              time, with or without notice, for violations of these Terms.
+            </p>
+
+            <h3 className="text-lg font-semibold text-white pt-2">
+              10. Governing Law
+            </h3>
+            <p>
+              These Terms are governed by the laws of the United States and the
+              State of <strong>[Your State]</strong>.
+            </p>
+
+            <h3 className="text-lg font-semibold text-white pt-2">
+              11. Changes to Terms
+            </h3>
+            <p>
+              We may update these Terms from time to time. Your continued use
+              of RoastyPit after updates constitutes acceptance of the new
+              Terms.
+            </p>
+
+            <h3 className="text-lg font-semibold text-white pt-2">
+              12. Contact Us
+            </h3>
+            <p>
+              If you have questions, please contact us at{' '}
+              <a
+                href="mailto:support@roastypit.com"
+                className="text-orange-400 hover:underline">
+                support@roastypit.com
+              </a>
+              .
+            </p>
+          </div>
           ),
         });
       }
@@ -723,38 +1042,38 @@ const App: React.FC = () => {
                   Generate Viral Video Roasts
                 </h1>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8 text-left w-full">
-                  <div className="bg-slate-800/80 border border-slate-700/80 rounded-lg p-4 flex gap-4 items-start transition-all duration-300 hover:scale-105 hover:drop-shadow-[0_0_8px_#f97316]">
-                    <TextModeIcon className="w-6 h-6 text-orange-400 shrink-0 mt-1" />
-                    <div>
+                  <div className="bg-slate-800/80 border border-slate-700/80 rounded-lg p-4 flex flex-col gap-2 transition-all duration-300 hover:scale-105 hover:drop-shadow-[0_0_8px_#f97316]">
+                    <div className="flex items-center gap-3">
+                      <TextModeIcon className="w-6 h-6 text-orange-400 shrink-0" />
                       <h3 className="font-semibold text-white">
                         <span className="font-bold">1.</span> Type a Roast Prompt
                       </h3>
-                      <p className="text-sm text-slate-400 mt-1">
-                        Describe the video you want to create.
-                      </p>
                     </div>
+                    <p className="text-sm text-slate-400 pl-9">
+                      Describe what you want, be creative.
+                    </p>
                   </div>
-                  <div className="bg-slate-800/80 border border-slate-700/80 rounded-lg p-4 flex gap-4 items-start transition-all duration-300 hover:scale-105 hover:drop-shadow-[0_0_8px_#f97316]">
-                    <SlidersHorizontalIcon className="w-6 h-6 text-orange-400 shrink-0 mt-1" />
-                    <div>
+                  <div className="bg-slate-800/80 border border-slate-700/80 rounded-lg p-4 flex flex-col gap-2 transition-all duration-300 hover:scale-105 hover:drop-shadow-[0_0_8px_#f97316]">
+                    <div className="flex items-center gap-3">
+                      <SlidersHorizontalIcon className="w-6 h-6 text-orange-400 shrink-0" />
                       <h3 className="font-semibold text-white">
                         <span className="font-bold">2.</span> Choose Your Settings
                       </h3>
-                      <p className="text-sm text-slate-400 mt-1">
-                        Set the model, resolution, and ratio.
-                      </p>
                     </div>
+                    <p className="text-sm text-slate-400 pl-9">
+                      Pick the model, aspect ratio, resolution.
+                    </p>
                   </div>
-                  <div className="bg-slate-800/80 border border-slate-700/80 rounded-lg p-4 flex gap-4 items-start transition-all duration-300 hover:scale-105 hover:drop-shadow-[0_0_8px_#f97316]">
-                    <ArrowRightIcon className="w-6 h-6 text-orange-400 shrink-0 mt-1" />
-                    <div>
+                  <div className="bg-slate-800/80 border border-slate-700/80 rounded-lg p-4 flex flex-col gap-2 transition-all duration-300 hover:scale-105 hover:drop-shadow-[0_0_8px_#f97316]">
+                    <div className="flex items-center gap-3">
+                      <ArrowRightIcon className="w-6 h-6 text-orange-400 shrink-0" />
                       <h3 className="font-semibold text-white">
                         <span className="font-bold">3.</span> Generate Your Video
                       </h3>
-                      <p className="text-sm text-slate-400 mt-1">
-                        Click the button and get your roast.
-                      </p>
                     </div>
+                    <p className="text-sm text-slate-400 pl-9">
+                      Click the button and watch the magic.
+                    </p>
                   </div>
                 </div>
                 <PromptForm

@@ -35,7 +35,7 @@ const Footer: React.FC<FooterProps> = ({onShowDialog, onShowArticle}) => {
           </div>
         </div>
         <div className="mt-6 pt-4 border-t border-slate-700/50 flex flex-col sm:flex-row justify-between items-center text-xs text-slate-500 gap-2 sm:gap-4">
-          <p className="text-center sm:text-left">&copy; {new Date().getFullYear()} RoastyPit. All Rights Reserved. A Google Veo Demo.</p>
+          <p className="text-center sm:text-left">&copy; {new Date().getFullYear()} RoastyPit A Gilnetwork Product. All Rights Reserved.</p>
           <div className="flex gap-4">
             <button onClick={() => onShowDialog('privacy')} className="hover:text-orange-400 transition-colors">Privacy Policy</button>
             <button onClick={() => onShowDialog('terms')} className="hover:text-orange-400 transition-colors">Terms of Service</button>
