@@ -30,8 +30,7 @@ const Footer: React.FC<FooterProps> = ({onShowDialog, onShowArticle}) => {
             </h3>
             <ArticleLinks onShowArticle={onShowArticle} />
           </div>
-          <div className="grid grid-cols-2 gap-8">
-            <div>
+          <div>
               <h3 className="font-semibold text-slate-400 text-xs tracking-widest uppercase mb-3">
                 RoastyPit
               </h3>
@@ -41,20 +40,14 @@ const Footer: React.FC<FooterProps> = ({onShowDialog, onShowArticle}) => {
                 <li><button onClick={() => onShowDialog('about')} className="text-slate-300 hover:text-orange-400 transition-colors">About</button></li>
                 <li><button onClick={() => onShowDialog('contact')} className="text-slate-300 hover:text-orange-400 transition-colors">Contact</button></li>
               </ul>
-            </div>
-            <div>
-              <h3 className="font-semibold text-slate-400 text-xs tracking-widest uppercase mb-3">
-                Legal
-              </h3>
-              <ul className="space-y-1.5 text-sm">
-                <li><button onClick={() => onShowDialog('privacy')} className="text-slate-300 hover:text-orange-400 transition-colors">Privacy</button></li>
-                <li><button onClick={() => onShowDialog('terms')} className="text-slate-300 hover:text-orange-400 transition-colors">Terms</button></li>
-              </ul>
-            </div>
           </div>
         </div>
-        <div className="mt-6 pt-4 border-t border-slate-700/50 text-center text-xs text-slate-500">
-          <p>&copy; {new Date().getFullYear()} RoastyPit. All Rights Reserved. A Google Veo Demo.</p>
+        <div className="mt-6 pt-4 border-t border-slate-700/50 flex flex-col sm:flex-row justify-between items-center text-xs text-slate-500 gap-2 sm:gap-4">
+          <p className="text-center sm:text-left">&copy; {new Date().getFullYear()} RoastyPit. All Rights Reserved. A Google Veo Demo.</p>
+          <div className="flex gap-4">
+            <button onClick={() => onShowDialog('privacy')} className="hover:text-orange-400 transition-colors">Privacy Policy</button>
+            <button onClick={() => onShowDialog('terms')} className="hover:text-orange-400 transition-colors">Terms of Service</button>
+          </div>
         </div>
       </div>
     </footer>
