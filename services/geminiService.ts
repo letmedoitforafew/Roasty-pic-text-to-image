@@ -92,7 +92,8 @@ export const generateVideo = async (
           imageBytes: params.styleImage.base64,
           mimeType: params.styleImage.file.type,
         },
-        referenceType: VideoGenerationReferenceType.STYLE,
+        // BUG FIX: The 'STYLE' enum does not exist. Corrected to 'ASSET'.
+        referenceType: VideoGenerationReferenceType.ASSET,
       });
     }
 

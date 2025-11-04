@@ -3,29 +3,20 @@
  * SPDX-License-Identifier: Apache-2.0
 */
 import React from 'react';
-// Fix: Correctly import DialogType, which is now exported from types.ts, resolving the original error.
-import { DialogType } from '../types';
-import Header from './Header';
 
 interface ArticlePageProps {
   title: string;
-  onClose: () => void;
   children: React.ReactNode;
-  onShowBlog: () => void;
-  onShowDialog: (dialog: DialogType) => void;
 }
 
-const ArticlePage: React.FC<ArticlePageProps> = ({ title, onClose, children, onShowBlog, onShowDialog }) => {
+const ArticlePage: React.FC<ArticlePageProps> = ({ title, children }) => {
   const emojiMatch = title.match(/^(\p{Emoji})/u);
   const emoji = emojiMatch ? emojiMatch[1] : null;
   const articleTitle = emoji ? title.substring(emoji.length).trim() : title;
 
   return (
-    <div className="h-screen text-gray-200 flex flex-col overflow-hidden bg-slate-900">
-      <Header onLogoClick={onClose} onShowBlog={onShowBlog} onShowDialog={onShowDialog} />
-
-      <div className="w-full max-w-screen-xl mx-auto flex-grow flex p-4 overflow-hidden">
-        <main className="w-full h-full overflow-y-auto pr-4">
+    <main className="w-full max-w-screen-xl mx-auto flex-grow flex p-4 overflow-hidden">
+        <div className="w-full h-full overflow-y-auto pr-4">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 <div className="lg:col-span-2">
                     <article className="bg-slate-800/50 p-8 md:p-12 rounded-2xl border border-slate-700/80">
@@ -46,9 +37,8 @@ const ArticlePage: React.FC<ArticlePageProps> = ({ title, onClose, children, onS
                     </div>
                 </aside>
             </div>
-        </main>
-      </div>
-    </div>
+        </div>
+    </main>
   );
 };
 
