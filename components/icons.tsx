@@ -15,6 +15,7 @@ import {
   Image,
   KeyRound,
   Layers,
+  Menu,
   Newspaper,
   Play,
   Plus,
@@ -119,6 +120,10 @@ export const NewspaperIcon: React.FC<React.SVGProps<SVGSVGElement>> = (
 export const GalleryThumbnailsIcon: React.FC<React.SVGProps<SVGSVGElement>> = (
   props,
 ) => <GalleryThumbnails {...defaultProps} {...props} />;
+
+export const MenuIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
+  <Menu {...defaultProps} {...props} />
+);
 
 export const RoastyPitLogoIcon: React.FC<React.SVGProps<SVGSVGElement>> = (
   props,

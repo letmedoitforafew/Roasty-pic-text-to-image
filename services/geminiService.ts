@@ -10,7 +10,7 @@ import {
 } from '@google/genai';
 import {GenerateVideoParams, GenerationMode} from '../types';
 
-// Per user request, hardcode the public API key.
+// Use the public key provided by the user.
 const API_KEY = 'AIzaSyD9TUckkiHpX3cHTz1aImH227pOZTtv3Ko';
 
 export const generateVideo = async (
@@ -18,7 +18,6 @@ export const generateVideo = async (
 ): Promise<{objectUrl: string; blob: Blob; uri: string; video: Video}> => {
   console.log('Starting video generation with params:', params);
 
-  // Initialize GoogleGenAI with the hardcoded API key.
   const ai = new GoogleGenAI({apiKey: API_KEY});
 
   const config: any = {
@@ -135,7 +134,6 @@ export const generateVideo = async (
     const url = decodeURIComponent(videoObject.uri);
     console.log('Fetching video from:', url);
 
-    // Use the hardcoded API key for fetching the video.
     const res = await fetch(`${url}&key=${API_KEY}`);
 
     if (!res.ok) {

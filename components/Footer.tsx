@@ -3,20 +3,12 @@
  * SPDX-License-Identifier: Apache-2.0
 */
 import React from 'react';
+import { ArticleSlug, DialogType } from '../types';
 import ArticleLinks from './ArticleLinks';
 
 interface FooterProps {
-  onShowDialog: (
-    dialog: 'about' | 'privacy' | 'terms' | 'contact' | 'gallery' | 'howitworks',
-  ) => void;
-  onShowArticle: (
-    slug:
-      | 'art-of-the-roast'
-      | 'hilarious-prompts'
-      | 'top-5-viral'
-      | 'ai-in-comedy'
-      | 'behind-the-scenes',
-  ) => void;
+  onShowDialog: (dialog: DialogType) => void;
+  onShowArticle: (slug: ArticleSlug) => void;
 }
 
 const Footer: React.FC<FooterProps> = ({onShowDialog, onShowArticle}) => {

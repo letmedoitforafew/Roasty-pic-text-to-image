@@ -57,3 +57,19 @@ export interface GenerateVideoParams {
   inputVideoObject?: Video | null;
   isLooping?: boolean;
 }
+
+export type ArticleSlug =
+  | 'art-of-the-roast'
+  | 'hilarious-prompts'
+  | 'top-5-viral'
+  | 'ai-in-comedy'
+  | 'behind-the-scenes';
+
+// Fix: Add and export DialogType to be used across components, resolving the import error.
+export type DialogType =
+  | 'about'
+  | 'privacy'
+  | 'terms'
+  | 'contact'
+  | 'gallery'
+  | 'howitworks';
