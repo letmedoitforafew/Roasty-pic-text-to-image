@@ -9,7 +9,10 @@ import ContactPage from './components/ContactPage';
 import Footer from './components/Footer';
 import GalleryPage from './components/GalleryPage';
 import {
+  ArrowRightIcon,
   RoastyPitLogoIcon,
+  SlidersHorizontalIcon,
+  TextModeIcon,
 } from './components/icons';
 import HowItWorksPage from './components/HowItWorksPage';
 import InfoDialog from './components/InfoDialog';
@@ -391,16 +394,19 @@ const App: React.FC = () => {
                         Generate Viral Video Roasts
                     </h1>
                     <div className="flex flex-wrap justify-center gap-3 sm:gap-4 mb-8">
-                        <div className="bg-slate-800/80 border border-slate-700/80 rounded-lg px-4 py-2 text-sm text-slate-300 flex items-center gap-2 transition-all duration-300 hover:scale-105 hover:drop-shadow-[0_0_8px_#f97316]">
-                            <span className="font-bold text-orange-400">1.</span>
+                        <div className="bg-slate-800/80 border border-slate-700/80 rounded-lg px-4 py-2 text-sm text-slate-300 flex items-center gap-3 transition-all duration-300 hover:scale-105 hover:drop-shadow-[0_0_8px_#f97316]">
+                            <TextModeIcon className="w-5 h-5 text-orange-400 shrink-0" />
+                            <span className="font-bold">1.</span>
                             <span>Type a roast prompt</span>
                         </div>
-                        <div className="bg-slate-800/80 border border-slate-700/80 rounded-lg px-4 py-2 text-sm text-slate-300 flex items-center gap-2 transition-all duration-300 hover:scale-105 hover:drop-shadow-[0_0_8px_#f97316]">
-                            <span className="font-bold text-orange-400">2.</span>
+                        <div className="bg-slate-800/80 border border-slate-700/80 rounded-lg px-4 py-2 text-sm text-slate-300 flex items-center gap-3 transition-all duration-300 hover:scale-105 hover:drop-shadow-[0_0_8px_#f97316]">
+                            <SlidersHorizontalIcon className="w-5 h-5 text-orange-400 shrink-0" />
+                            <span className="font-bold">2.</span>
                             <span>Choose your settings</span>
                         </div>
-                        <div className="bg-slate-800/80 border border-slate-700/80 rounded-lg px-4 py-2 text-sm text-slate-300 flex items-center gap-2 transition-all duration-300 hover:scale-105 hover:drop-shadow-[0_0_8px_#f97316]">
-                            <span className="font-bold text-orange-400">3.</span>
+                        <div className="bg-slate-800/80 border border-slate-700/80 rounded-lg px-4 py-2 text-sm text-slate-300 flex items-center gap-3 transition-all duration-300 hover:scale-105 hover:drop-shadow-[0_0_8px_#f97316]">
+                            <ArrowRightIcon className="w-5 h-5 text-orange-400 shrink-0" />
+                            <span className="font-bold">3.</span>
                             <span>Generate your video</span>
                         </div>
                     </div>
