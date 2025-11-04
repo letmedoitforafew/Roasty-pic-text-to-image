@@ -20,12 +20,12 @@ const ArticlePage: React.FC<ArticlePageProps> = ({ title, onClose, children }) =
   return (
     <div className="h-screen text-gray-200 flex flex-col overflow-hidden">
       <header className="py-4 px-8 relative z-10 shrink-0 flex justify-between items-center border-b border-slate-800 bg-slate-900/80 backdrop-blur-sm">
-        <div className="flex items-center gap-4">
-          <RoastyPitLogoIcon className="w-10 h-10 text-orange-400" />
+        <button onClick={onClose} className="flex items-center gap-4 group" aria-label="Go to homepage">
+          <RoastyPitLogoIcon className="w-10 h-10 text-orange-400 group-hover:scale-105 transition-transform" />
           <h1 className="text-3xl font-bold tracking-tight bg-gradient-to-r from-amber-300 via-orange-500 to-red-600 bg-clip-text text-transparent">
             RoastyPit
           </h1>
-        </div>
+        </button>
         <div className="hidden md:block">
             <AdPlaceholder label="Header Ad" width={728} height={90} />
         </div>

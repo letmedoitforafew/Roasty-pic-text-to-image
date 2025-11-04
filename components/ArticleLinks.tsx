@@ -23,7 +23,7 @@ interface ArticleLinksProps {
 
 const ArticleLinks: React.FC<ArticleLinksProps> = ({onShowArticle}) => {
   return (
-    <ul className="space-y-2">
+    <ul className="space-y-1.5 text-sm">
       {articleLinks.map((link) => (
         <li key={link.slug}>
           <button
