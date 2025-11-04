@@ -3,8 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
 */
 import {Video} from '@google/genai';
-import React, {useCallback, useEffect, useState} from 'react';
-import AdPlaceholder from './components/AdPlaceholder';
+import React, {useCallback, useState} from 'react';
 import ArticlePage from './components/ArticlePage';
 import ContactPage from './components/ContactPage';
 import Footer from './components/Footer';
@@ -28,6 +27,8 @@ import {
   Resolution,
   VideoFile,
 } from './types';
+// FIX: Import the `AdPlaceholder` component to fix the 'Cannot find name' error.
+import AdPlaceholder from './components/AdPlaceholder';
 
 const App: React.FC = () => {
   const [appState, setAppState] = useState<AppState>(AppState.IDLE);
@@ -325,16 +326,7 @@ const App: React.FC = () => {
               The API key appears to be invalid or lacks permissions for Veo.
               <p className="mt-4 text-sm text-red-400/80">
                 Please ensure the key is correct and associated with a Google
-                Cloud project that has billing enabled. For instructions, visit
-                the{' '}
-                <a
-                  href="https://ai.google.dev/gemini-api/docs/billing"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-semibold underline hover:text-orange-300">
-                  billing documentation
-                </a>
-                .
+                Cloud project that has billing enabled. This app is using a public key for demonstration purposes which may have restrictions.
               </p>
             </>
           );
@@ -494,115 +486,87 @@ const App: React.FC = () => {
       {showGalleryPage && <GalleryPage onClose={() => setShowGalleryPage(false)} />}
       {showHowItWorksPage && <HowItWorksPage onClose={() => setShowHowItWorksPage(false)} />}
       {infoDialogContent && (
-        <InfoDialog
-          title={infoDialogContent.title}
-          onClose={() => setInfoDialogContent(null)}>
+        <InfoDialog title={infoDialogContent.title} onClose={() => setInfoDialogContent(null)}>
           {infoDialogContent.content}
         </InfoDialog>
       )}
-      
-      <header className="py-4 px-8 relative z-10 shrink-0 flex justify-center items-center">
-        <div className="flex items-center gap-4">
-          <RoastyPitLogoIcon className="w-14 h-14 text-orange-400 logo-glow-animation" />
-          <h1 className="text-5xl font-bold tracking-tight text-center bg-gradient-to-r from-amber-300 via-orange-500 to-red-600 bg-clip-text text-transparent">
-            RoastyPit
-          </h1>
-        </div>
-      </header>
 
-      <div className="w-full max-w-screen-xl mx-auto flex-grow flex flex-col p-4 overflow-hidden">
-        <main className="w-full h-full flex flex-col justify-start items-center overflow-y-auto">
-            {appState === AppState.IDLE ? (
-              <div className="w-full h-full flex flex-col">
-                <div className="text-center mb-8 px-4 pt-4">
-                  <h2 className="text-4xl lg:text-5xl font-bold tracking-tight bg-gradient-to-r from-amber-200 to-orange-400 bg-clip-text text-transparent mb-4">
-                    Generate Viral Video Roasts
-                  </h2>
-                  <p className="text-lg text-slate-400">
-                    Turn any idea into a viral masterpiece. Just describe your
-                    scene, and let our AI do the rest.
+      <>
+        <header className="py-4 px-8 relative z-10 shrink-0 flex justify-between items-center">
+          <div className="flex items-center gap-4">
+            <RoastyPitLogoIcon className="w-10 h-10 text-orange-400" />
+            <h1 className="text-3xl font-bold tracking-tight bg-gradient-to-r from-amber-300 via-orange-500 to-red-600 bg-clip-text text-transparent">
+              RoastyPit
+            </h1>
+          </div>
+          <div className="hidden md:block">
+            <AdPlaceholder label="Header Ad" width={728} height={90} />
+          </div>
+        </header>
+
+        <main className="flex-grow flex items-center justify-center p-4 overflow-auto">
+          {appState === AppState.IDLE && !videoUrl && (
+            <div className="flex flex-col items-center justify-center text-center px-4">
+              <RoastyPitLogoIcon className="w-20 h-20 text-orange-400 mb-4 logo-glow-animation" />
+              <h1 className="text-3xl md:text-4xl font-bold tracking-tight mb-1">
+                Generate Viral Video Roasts
+              </h1>
+              <p className="text-base text-slate-400 mb-4 max-w-2xl">
+                Enter a prompt and watch our AI create a hilarious, shareable
+                video roast in seconds.
+              </p>
+              <div className="flex flex-col md:flex-row gap-4 mb-4 text-left">
+                <div className="bg-slate-800/50 p-4 rounded-xl border border-slate-700/50 flex-1">
+                  <TextModeIcon className="w-6 h-6 text-orange-400 mb-2" />
+                  <h3 className="text-base font-semibold mb-1">Enter a Prompt</h3>
+                  <p className="text-sm text-slate-400">
+                    Describe what you want to roast. Be specific for the best
+                    results!
                   </p>
                 </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8 px-4">
-                  <div className="bg-slate-800/50 p-6 rounded-2xl border border-slate-700/80 transform hover:scale-105 hover:border-orange-500/80 transition-all duration-300">
-                    <div className="flex justify-center items-center mb-4 w-12 h-12 rounded-full bg-orange-900/50 mx-auto text-orange-400">
-                      <TextModeIcon className="w-6 h-6" />
-                    </div>
-                    <h3 className="text-xl font-semibold text-white mb-2">
-                      1. Write Your Roast
-                    </h3>
-                    <p className="text-slate-400 text-sm">
-                      Describe the scene. Be specific, be witty, be savage.
-                      The AI loves detail.
-                    </p>
-                  </div>
-                  <div className="bg-slate-800/50 p-6 rounded-2xl border border-slate-700/80 transform hover:scale-105 hover:border-orange-500/80 transition-all duration-300">
-                    <div className="flex justify-center items-center mb-4 w-12 h-12 rounded-full bg-orange-900/50 mx-auto text-orange-400">
-                      <SlidersHorizontalIcon className="w-6 h-6" />
-                    </div>
-                    <h3 className="text-xl font-semibold text-white mb-2">
-                      2. Adjust the Settings
-                    </h3>
-                    <p className="text-slate-400 text-sm">
-                      Choose your format, quality, and generation mode for
-                      the perfect burn.
-                    </p>
-                  </div>
-                  <div className="bg-slate-800/50 p-6 rounded-2xl border border-slate-700/80 transform hover:scale-105 hover:border-orange-500/80 transition-all duration-300">
-                    <div className="flex justify-center items-center mb-4 w-12 h-12 rounded-full bg-orange-900/50 mx-auto text-orange-400">
-                      <ShareIcon className="w-6 h-6" />
-                    </div>
-                    <h3 className="text-xl font-semibold text-white mb-2">
-                      3. Go Viral
-                    </h3>
-                    <p className="text-slate-400 text-sm">
-                      Generate your video, download it, and share your
-                      glorious roast with the world.
-                    </p>
-                  </div>
+                <div className="bg-slate-800/50 p-4 rounded-xl border border-slate-700/50 flex-1">
+                  <SlidersHorizontalIcon className="w-6 h-6 text-orange-400 mb-2" />
+                  <h3 className="text-base font-semibold mb-1">Customize</h3>
+                  <p className="text-sm text-slate-400">
+                    Choose generation modes, aspect ratio, and resolution.
+                  </p>
                 </div>
-
-                <div className="w-full mt-auto p-4 sticky bottom-0 bg-slate-900/70 backdrop-blur-sm border-t border-slate-800">
-                  <div className="w-full max-w-3xl mx-auto">
-                    <div className="text-center text-xs text-slate-500 mb-4 px-4">
-                      Our AI is trained for comedy, not cruelty. Please keep
-                      prompts light-hearted and fun. Let's create roasts, not
-                      riots!
-                    </div>
-                    <PromptForm
-                      onGenerate={handleGenerate}
-                      initialValues={initialFormValues}
-                    />
-                  </div>
+                <div className="bg-slate-800/50 p-4 rounded-xl border border-slate-700/50 flex-1">
+                  <ShareIcon className="w-6 h-6 text-orange-400 mb-2" />
+                  <h3 className="text-base font-semibold mb-1">Go Viral</h3>
+                  <p className="text-sm text-slate-400">
+                    Download and share your creation on social media.
+                  </p>
                 </div>
               </div>
-            ) : (
-              <div className="w-full flex-grow flex items-center justify-center p-4">
-                {appState === AppState.LOADING && <LoadingIndicator />}
-                {appState === AppState.SUCCESS && videoUrl && (
-                  <VideoResult
-                    videoUrl={videoUrl}
-                    videoBlob={lastVideoBlob}
-                    onRetry={handleRetry}
-                    onNewVideo={handleNewVideo}
-                    onExtend={handleExtend}
-                    canExtend={lastConfig?.resolution === Resolution.P720}
-                  />
-                )}
-                {appState === AppState.SUCCESS &&
-                  !videoUrl &&
-                  renderError(
-                    'Video generated, but URL is missing. Please try again.',
-                  )}
-                {appState === AppState.ERROR &&
-                  errorMessage &&
-                  renderError(errorMessage)}
+              <p className="text-sm text-slate-500 mb-4 max-w-lg">
+                Keep it light-hearted and fun! RoastyPit is for laughs, not for
+                being mean. AI may not generate offensive videos.
+              </p>
+              <div className="w-full max-w-3xl">
+                <PromptForm
+                  onGenerate={handleGenerate}
+                  initialValues={initialFormValues}
+                />
               </div>
-            )}
+            </div>
+          )}
+          {appState === AppState.LOADING && <LoadingIndicator />}
+          {appState === AppState.SUCCESS && videoUrl && lastVideoBlob && (
+            <VideoResult
+              videoUrl={videoUrl}
+              videoBlob={lastVideoBlob}
+              onRetry={handleRetry}
+              onNewVideo={handleNewVideo}
+              onExtend={handleExtend}
+              canExtend={lastConfig?.resolution === Resolution.P720}
+            />
+          )}
+          {appState === AppState.ERROR && errorMessage && renderError(errorMessage)}
         </main>
-      </div>
-      <Footer onShowDialog={handleShowDialog} onShowArticle={handleShowArticle} />
+        
+        <Footer onShowDialog={handleShowDialog} onShowArticle={handleShowArticle} />
+      </>
     </div>
   );
 };
