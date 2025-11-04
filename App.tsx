@@ -372,8 +372,13 @@ const infoPageData = {
     'about': {
         title: "About RoastyPit",
         content: <>
-            <p>RoastyPit is a passion project from Gilnetwork and its CEO Roberto Gil, exploring the intersection of AI and comedy.</p>
-            <p>Using cutting-edge text-to-video technology, we turn your words into hilarious, shareable roasts in seconds.</p>
+            <p>RoastyPit was born from one simple idea: what if anyone could create hilarious, shareable videos with just a few words? The visionary behind this project is <strong>Roberto Gil</strong>, a tech entrepreneur with a passion for innovation, humor, and AI-powered creativity.</p>
+            <p>Roberto has always been fascinated by the intersection of technology and creativity. After years of experimenting with AI, software, and digital media, he founded <strong>Gilnetwork</strong>, a company dedicated to building smart, engaging, and fun digital experiences. His mission was to make technology approachable — and entertaining — for everyone.</p>
+            <p>With humor at the core, Roberto envisioned a platform that could turn text into animated, funny videos instantly. Using the cutting-edge <strong>Google Veo 3 AI technology</strong>, RoastyPit became more than a tool — it became a creative playground. Users can type a simple prompt and watch as the AI transforms their words into clever roasts, skits, and viral-ready content.</p>
+            <p>Google Veo 3 provides powerful AI capabilities for natural language understanding, voice synthesis, and video generation. By leveraging this technology, Gilnetwork was able to design a platform that is not only intelligent but also fast and responsive. The AI ensures that every joke, expression, and animation feels human, while still being scalable for millions of users.</p>
+            <p>At RoastyPit, our mission is simple: <strong>to make humor and creativity accessible to everyone</strong>. Whether you’re a casual user looking for a quick laugh, a content creator seeking viral material, or a marketer wanting engaging campaigns, RoastyPit gives you the tools to make your ideas come alive in seconds.</p>
+            <p>Gilnetwork is committed to innovation, user safety, and high-quality content. Every feature of RoastyPit is designed with these principles in mind — from AI-generated humor to smooth video rendering. Our goal is to ensure that your creative journey is seamless, fun, and filled with laughter.</p>
+            <p>RoastyPit isn’t just an app — it’s a community of creators, innovators, and humor enthusiasts. Join us, type your first prompt, and see how AI can turn your ideas into viral comedy. With Roberto Gil and Gilnetwork at the helm, the future of AI-powered humor is just getting started.</p>
         </>
     },
     'privacy': {
