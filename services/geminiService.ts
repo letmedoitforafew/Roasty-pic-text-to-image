@@ -11,7 +11,7 @@ import {
 import {GenerateVideoParams, GenerationMode} from '../types';
 
 // Use the public key provided by the user.
-const API_KEY = 'AIzaSyD9TUckkiHpX3cHTz1aImH227pOZTtv3Ko';
+const API_KEY = process.env.API_KEY;
 
 export const generateVideo = async (
   params: GenerateVideoParams,
@@ -138,6 +138,8 @@ export const generateVideo = async (
     const res = await fetch(`${url}&key=${API_KEY}`);
 
     if (!res.ok) {
+      const errorBody = await res.text();
+      console.error('Failed to fetch video. Response:', errorBody);
       throw new Error(`Failed to fetch video: ${res.status} ${res.statusText}`);
     }
 

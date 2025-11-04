@@ -11,10 +11,12 @@ import {
   ChevronDown,
   Download,
   Film,
+  Flame,
   GalleryThumbnails,
   Image,
   KeyRound,
   Layers,
+  Megaphone,
   Menu,
   Newspaper,
   Play,
@@ -91,6 +93,14 @@ export const TvIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
 export const FilmIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
   <Film {...defaultProps} {...props} />
 );
+
+export const FlameIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
+  <Flame {...defaultProps} {...props} />
+);
+
+export const MegaphoneIcon: React.FC<React.SVGProps<SVGSVGElement>> = (
+  props,
+) => <Megaphone {...defaultProps} {...props} />;
 
 // This icon had a different stroke width in the original file, so we preserve it.
 export const CurvedArrowDownIcon: React.FC<React.SVGProps<SVGSVGElement>> = (

@@ -20,9 +20,11 @@ import {
   AppState,
   ArticleSlug,
   GenerateVideoParams,
+  GenerationMode,
+  Resolution,
+  VeoModel,
 } from './types';
-import { articleLinks } from './components/ArticleLinks';
-import { RoastyPitLogoIcon, SlidersHorizontalIcon, TextModeIcon, ArrowRightIcon } from './components/icons';
+import ApiKeyDialog from './components/ApiKeyDialog';
 
 
 // Helper to get route and params from hash
@@ -32,7 +34,7 @@ const parseRoute = () => {
     return { page: 'home', param: null };
   }
   const [page, param] = hash.split('/');
-  return { page, param };
+  return { page, param: param || null };
 };
 
 const articlesData: Record<ArticleSlug, { title: string; content: React.ReactNode }> = {
@@ -130,7 +132,10 @@ const articlesData: Record<ArticleSlug, { title: string; content: React.ReactNod
 const infoPageData = {
     'about': {
         title: "About RoastyPit",
-        content: <p>RoastyPit is a passion project exploring the intersection of AI and comedy, developed by Gilnetwork and its CEO Roberto Gil. We believe everyone has a funny idea, and our goal is to give you the tools to bring it to life in seconds. Using cutting-edge text-to-video technology, we turn your words into hilarious, shareable roasts.</p>
+        content: <>
+            <p>RoastyPit is a passion project from Gilnetwork and its CEO Roberto Gil, exploring the intersection of AI and comedy.</p>
+            <p>Using cutting-edge text-to-video technology, we turn your words into hilarious, shareable roasts in seconds.</p>
+        </>
     },
     'privacy': {
         title: "Privacy Policy",
@@ -179,337 +184,250 @@ const infoPageData = {
                 <li>Performance cookies to analyze site usage.</li>
                 <li>Functional cookies to enhance website features.</li>
             </ul>
-
-            <h2>5. Data Retention</h2>
-            <p>We retain your information only as long as necessary to provide our services and comply with legal obligations. Text prompts and generated videos may be temporarily stored during processing but are not permanently linked to personal information unless you choose to save them.</p>
-
-            <h2>6. Security of Your Information</h2>
-            <p>We implement reasonable administrative, technical, and physical safeguards to protect your information from unauthorized access, disclosure, alteration, or destruction. However, no internet or electronic transmission is 100% secure, and we cannot guarantee absolute security.</p>
-            
-            <h2>7. Third-Party Services</h2>
-            <p>RoastyPit may use third-party services, such as analytics or advertising platforms. These third-party services have their own privacy policies, and we encourage you to review them:</p>
-            <ul>
-                <li>Google Analytics: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="text-orange-400 hover:underline">https://policies.google.com/privacy</a></li>
-                <li>Google AdSense: <a href="https://www.google.com/policies/privacy/" target="_blank" rel="noopener noreferrer" className="text-orange-400 hover:underline">https://www.google.com/policies/privacy/</a></li>
-            </ul>
-            <p>We are not responsible for the privacy practices of third-party services.</p>
-
-            <h2>8. Children’s Privacy</h2>
-            <p>RoastyPit does not knowingly collect personal information from children under the age of 13. If we become aware that we have inadvertently collected such information, we will take steps to delete it.</p>
-
-            <h2>9. Your Privacy Rights</h2>
-            <p>Depending on your location, you may have rights regarding your personal information, including:</p>
-            <ul>
-                <li>Accessing your data</li>
-                <li>Correcting or updating your information</li>
-                <li>Requesting deletion of your data</li>
-                <li>Opting out of marketing communications</li>
-                <li>Withdrawing consent where applicable</li>
-            </ul>
-            <p>To exercise any of these rights, please contact us at <a href="mailto:support@roastypit.com" className="text-orange-400 hover:underline">support@roastypit.com</a>.</p>
-
-            <h2>10. Changes to This Privacy Policy</h2>
-            <p>We may update this Privacy Policy from time to time. When we make changes, we will update the “Effective Date” at the top and, where required, notify users. Continued use of RoastyPit after updates constitutes acceptance of the new terms.</p>
-
-            <h2>11. Contact Us</h2>
-            <p>If you have questions or concerns about this Privacy Policy or how we handle your information, please contact us:</p>
-            <p>Email: <a href="mailto:support@roastypit.com" className="text-orange-400 hover:underline">support@roastypit.com</a></p>
-            <p>Website: <a href="https://roastypit.com" target="_blank" rel="noopener noreferrer" className="text-orange-400 hover:underline">https://roastypit.com</a></p>
         </>
     },
     'terms': {
         title: "Terms of Service",
         content: <>
             <p><strong>Effective Date:</strong> November 3, 2025</p>
-            <p>Welcome to RoastyPit.com (“RoastyPit,” “we,” “our,” or “us”). By accessing or using our website and services, including our text-to-video generator, you agree to be bound by these Terms of Service (“Terms”). Please read them carefully.</p>
-            <p>If you do not agree to these Terms, you may not use RoastyPit.</p>
-            <h2>1. Use of RoastyPit Services</h2>
-            <h3>1.1 Eligibility</h3>
-            <p>You must be at least 13 years old to use our services. By using RoastyPit, you represent that you meet this age requirement.</p>
-            <h3>1.2 License</h3>
-            <p>RoastyPit grants you a limited, non-exclusive, non-transferable license to access and use our website and services for personal, non-commercial purposes.</p>
-            <h3>1.3 Prohibited Uses</h3>
-            <p>You may not:</p>
-            <ul>
-                <li>Violate any laws, regulations, or third-party rights.</li>
-                <li>Upload or submit content that is illegal, offensive, obscene, or infringes on copyright.</li>
-                <li>Attempt to disrupt, hack, or interfere with the website or its services.</li>
-                <li>Use the service to generate spam, malware, or harmful content.</li>
-            </ul>
-            <h2>2. User Accounts</h2>
-            <h3>2.1 Account Creation</h3>
-            <p>Some features of RoastyPit may require account registration. You agree to provide accurate and complete information.</p>
-            <h3>2.2 Account Security</h3>
-            <p>You are responsible for maintaining the confidentiality of your login credentials. You agree to notify us immediately of any unauthorized use of your account.</p>
-            <h3>2.3 Account Termination</h3>
-            <p>We reserve the right to suspend or terminate your account for violations of these Terms or for any reason at our discretion.</p>
-            <h2>3. Content Ownership and License</h2>
-            <h3>3.1 User-Generated Content</h3>
-            <p>You retain ownership of the text prompts you submit. By submitting content to RoastyPit, you grant us a worldwide, royalty-free, non-exclusive license to use, modify, and display your content to provide our services.</p>
-            <h3>3.2 Generated Videos</h3>
-            <p>Videos created through RoastyPit are provided for personal, non-commercial use unless otherwise agreed. You may share videos online or download them for personal use. Commercial use requires explicit permission from RoastyPit.</p>
-            <h3>3.3 Prohibited Content</h3>
-            <p>You may not submit content that:</p>
-            <ul>
-                <li>Infringes intellectual property rights</li>
-                <li>Contains hate speech, threats, or harassment</li>
-                <li>Is sexually explicit or harmful to minors</li>
-            </ul>
-            <h2>4. Privacy</h2>
-            <p>Your use of RoastyPit is subject to our Privacy Policy, which explains how we collect, use, and protect your data. By using our services, you consent to our Privacy Policy.</p>
-            <h2>5. Intellectual Property</h2>
-            <p>All website content, including text, graphics, logos, videos, and software, is owned by RoastyPit or its licensors and is protected by copyright and other intellectual property laws. You may not reproduce, distribute, or create derivative works without prior written consent.</p>
-            <h2>6. Third-Party Services</h2>
-            <p>RoastyPit may use third-party services (like cloud hosting, analytics, or ads) to provide the service. These services may have their own terms and privacy policies. We are not responsible for the practices of third-party providers.</p>
-            <h2>7. Disclaimer of Warranties</h2>
-            <p>RoastyPit provides its services “as is” and “as available.” We do not guarantee:</p>
-            <ul>
-                <li>Continuous, error-free, or secure access to the website</li>
-                <li>Accuracy, reliability, or suitability of generated content</li>
-                <li>That the service meets all user expectations</li>
-            </ul>
-            <p>All use is at your own risk.</p>
-            <h2>8. Limitation of Liability</h2>
-            <p>To the maximum extent permitted by law, RoastyPit, its affiliates, and partners are not liable for:</p>
-            <ul>
-                <li>Any direct, indirect, incidental, or consequential damages</li>
-                <li>Loss of profits, data, or business opportunities</li>
-                <li>Any content generated through the service</li>
-            </ul>
-            <h2>9. Indemnification</h2>
-            <p>You agree to indemnify, defend, and hold harmless RoastyPit, its affiliates, and its employees from any claims, liabilities, damages, or expenses arising from:</p>
-            <ul>
-                <li>Your use of the website or services</li>
-                <li>Your violation of these Terms</li>
-                <li>Your submission of prohibited content</li>
-            </ul>
-            <h2>10. Termination</h2>
-            <p>We may suspend or terminate your access to RoastyPit at any time, with or without notice, for violations of these Terms or for other reasons. Sections 3, 5, 7, 8, 9, and 11 will survive termination.</p>
-            <h2>11. Governing Law</h2>
-            <p>These Terms are governed by the laws of the United States and the State of [Your State], without regard to conflict of law principles. Any disputes arising from these Terms or your use of RoastyPit will be resolved in the courts of [Your State].</p>
-            <h2>12. Changes to Terms</h2>
-            <p>We may update these Terms from time to time. Changes will be posted on this page with a revised Effective Date. Your continued use of RoastyPit after updates constitutes acceptance of the new Terms.</p>
-            <h2>13. Contact Us</h2>
-            <p>If you have questions or concerns about these Terms, please contact us:</p>
-            <p>Email: support@roastypit.com</p>
-            <p>Website: https://roastypit.com</p>
+            <p>Welcome to RoastyPit.com. By accessing or using our website, you agree to comply with and be bound by the following terms and conditions of use. Please review these terms carefully.</p>
+
+            <h2>1. Acceptance of Agreement</h2>
+            <p>You agree to the terms and conditions outlined in this Terms of Service Agreement ("Agreement") with respect to our site (the "Site"). This Agreement constitutes the entire and only agreement between us and you, and supersedes all prior or contemporaneous agreements, representations, warranties and understandings with respect to the Site.</p>
+
+            <h2>2. Use of the Site</h2>
+            <p>You are granted a non-exclusive, non-transferable, revocable license to access and use the Site strictly in accordance with this Agreement. As a condition of your use of the Site, you warrant that you will not use the Site for any purpose that is unlawful or prohibited by these terms.</p>
+            
+            <h2>3. Intellectual Property</h2>
+            <p>The content, organization, graphics, design, compilation, and other matters related to the Site are protected under applicable copyrights, trademarks and other proprietary (including but not limited to intellectual property) rights. The copying, redistribution, use or publication by you of any such matters or any part of the Site is strictly prohibited.</p>
+
+            <h2>4. Limitation of Liability</h2>
+            <p>We shall not be liable for any loss, injury, claim, liability, or damage of any kind resulting in any way from your use of the site. We are not responsible for any videos generated using our service. You are responsible for the content you create and share.</p>
         </>
     }
-}
-
-
-const App: React.FC = () => {
-  // App State
-  const [appState, setAppState] = useState<AppState>(AppState.IDLE);
-  const [videoUrl, setVideoUrl] = useState<string | null>(null);
-  const [errorMessage, setErrorMessage] = useState<React.ReactNode | null>(null);
-  const [lastConfig, setLastConfig] = useState<GenerateVideoParams | null>(null);
-  const [lastVideoObject, setLastVideoObject] = useState<Video | null>(null);
-  const [lastVideoBlob, setLastVideoBlob] = useState<Blob | null>(null);
-  const [initialFormValues, setInitialFormValues] = useState<GenerateVideoParams | null>(null);
-
-  // Routing State
-  const [route, setRoute] = useState(parseRoute());
-
-  useEffect(() => {
-    const handleHashChange = () => {
-      setRoute(parseRoute());
-      window.scrollTo(0, 0);
-    };
-    window.addEventListener('hashchange', handleHashChange);
-    return () => window.removeEventListener('hashchange', handleHashChange);
-  }, []);
-
-  const handleSubmit = useCallback(async (params: GenerateVideoParams) => {
-    setAppState(AppState.LOADING);
-    setVideoUrl(null);
-    setErrorMessage(null);
-    setLastConfig(params);
-
-    try {
-      const {objectUrl, blob, video} = await generateVideo(params);
-      setVideoUrl(objectUrl);
-      setLastVideoObject(video);
-      setLastVideoBlob(blob);
-      setAppState(AppState.SUCCESS);
-    } catch (e) {
-      console.error(e);
-      const error = e as Error;
-      let displayError = error.message || 'An unknown error occurred.';
-      if (displayError.includes('API key not valid')) {
-        displayError = "The provided API key is invalid. Please ensure it is correct and has the necessary permissions."
-      }
-
-      setErrorMessage(
-        <>
-          <p className="font-semibold">Video generation failed:</p>
-          <p className="mt-1 text-sm text-red-300">
-            {displayError}
-          </p>
-        </>,
-      );
-      setAppState(AppState.ERROR);
-    }
-  }, []);
-
-  const handleNewVideo = useCallback(() => {
-    setAppState(AppState.IDLE);
-    setVideoUrl(null);
-    setErrorMessage(null);
-    setLastConfig(null);
-    setInitialFormValues(null);
-    window.location.hash = 'home';
-  }, []);
-  
-  const handleTryAgain = useCallback(() => {
-    if (lastConfig) {
-      setInitialFormValues(lastConfig);
-      setAppState(AppState.IDLE);
-      setErrorMessage(null);
-    } else {
-      handleNewVideo();
-    }
-  }, [lastConfig, handleNewVideo]);
-
-  const handleExtend = useCallback(() => {
-    if (lastVideoObject && lastVideoBlob && lastConfig) {
-      setInitialFormValues({
-        ...lastConfig,
-        mode: 'Extend Video',
-        prompt: '',
-        inputVideoObject: lastVideoObject,
-        inputVideo: {
-          file: new File([lastVideoBlob], 'last_video.mp4', {
-            type: 'video/mp4',
-          }),
-          base64: '', // Not needed as we have the object
-        },
-      });
-      setAppState(AppState.IDLE);
-    }
-  }, [lastVideoObject, lastVideoBlob, lastConfig]);
-
-
-  const renderMainContent = () => {
-    switch (appState) {
-      case AppState.LOADING:
-        return <LoadingIndicator />;
-      case AppState.SUCCESS:
-        if (videoUrl) {
-          return (
-            <VideoResult
-              videoUrl={videoUrl}
-              videoBlob={lastVideoBlob}
-              onRetry={handleTryAgain}
-              onNewVideo={handleNewVideo}
-              onExtend={handleExtend}
-              canExtend={lastConfig?.resolution === '720p'}
-            />
-          );
-        }
-        return null;
-      case AppState.ERROR:
-        return (
-          <div className="flex flex-col items-center justify-center p-8 bg-red-900/30 backdrop-blur-sm rounded-2xl border border-red-500/50 w-full max-w-lg text-center">
-            <h2 className="text-2xl font-bold text-red-300">
-              Something Went Wrong
-            </h2>
-            <div className="mt-4 text-red-200">{errorMessage}</div>
-            <div className="mt-8 flex gap-4">
-              <button
-                onClick={handleTryAgain}
-                className="px-6 py-3 bg-slate-700 hover:bg-slate-600 text-white font-semibold rounded-lg transition-colors">
-                Try Again
-              </button>
-              <button
-                onClick={handleNewVideo}
-                className="px-6 py-3 bg-orange-600 hover:bg-orange-700 text-white font-semibold rounded-lg transition-colors">
-                New Video
-              </button>
-            </div>
-          </div>
-        );
-      case AppState.IDLE:
-      default:
-        return (
-            <div className="w-full max-w-4xl mx-auto flex flex-col items-center text-center px-4">
-                <h2 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight bg-gradient-to-r from-amber-300 via-orange-500 to-red-600 bg-clip-text text-transparent">
-                    Generate Viral Video Roasts
-                </h2>
-                <p className="mt-4 text-lg text-slate-400 max-w-xl">
-                    Turn any idea into a hilarious, shareable video in seconds. Just type a prompt and let our AI do the roasting.
-                </p>
-                <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-2xl w-full">
-                    <div className="bg-slate-800/50 p-3 rounded-lg border border-slate-700/80 flex flex-col items-center gap-2 text-center transition-all duration-300 hover:scale-105 hover:drop-shadow-[0_0_8px_#f97316]">
-                        <TextModeIcon className="w-8 h-8 text-orange-400" />
-                        <h3 className="font-semibold text-white">1. Type a Prompt</h3>
-                        <p className="text-xs text-slate-400">Describe your scene or idea.</p>
-                    </div>
-                    <div className="bg-slate-800/50 p-3 rounded-lg border border-slate-700/80 flex flex-col items-center gap-2 text-center transition-all duration-300 hover:scale-105 hover:drop-shadow-[0_0_8px_#f97316]">
-                        <SlidersHorizontalIcon className="w-8 h-8 text-orange-400" />
-                        <h3 className="font-semibold text-white">2. Choose Settings</h3>
-                        <p className="text-xs text-slate-400">Pick your style and format.</p>
-                    </div>
-                    <div className="bg-slate-800/50 p-3 rounded-lg border border-slate-700/80 flex flex-col items-center gap-2 text-center transition-all duration-300 hover:scale-105 hover:drop-shadow-[0_0_8px_#f97316]">
-                        <ArrowRightIcon className="w-8 h-8 text-orange-400" />
-                        <h3 className="font-semibold text-white">3. Get Your Video</h3>
-                        <p className="text-xs text-slate-400">Share your AI creation.</p>
-                    </div>
-                </div>
-                <div className="mt-8 w-full max-w-3xl">
-                    <PromptForm onGenerate={handleSubmit} initialValues={initialFormValues} />
-                    <p className="mt-4 text-xs text-slate-500">
-                        Type a prompt and choose your settings. Our AI will generate a hilarious, unique video for you. Please keep it fun and friendly!
-                    </p>
-                </div>
-            </div>
-        );
-    }
-  };
-
-  const renderPage = () => {
-    if (route.page.startsWith('article')) {
-        const slug = route.param as ArticleSlug | undefined;
-        if (slug && articlesData[slug]) {
-            const article = articlesData[slug];
-            return <ArticlePage title={article.title}>{article.content}</ArticlePage>;
-        }
-    }
-
-    switch(route.page) {
-        case 'home':
-            return (
-                <main className="w-full flex-grow flex items-center justify-center p-4">
-                    {renderMainContent()}
-                </main>
-            );
-        case 'blog':
-            return <BlogPage />;
-        case 'gallery':
-            return <GalleryPage />;
-        case 'howitworks':
-            return <HowItWorksPage />;
-        case 'contact':
-            return <ContactPage />;
-        case 'about':
-        case 'privacy':
-        case 'terms':
-            const data = infoPageData[route.page];
-            return <InfoPage title={data.title}>{data.content}</InfoPage>
-        default:
-            // Fallback for unknown routes
-            window.location.hash = 'home';
-            return null;
-    }
-  }
-
-  return (
-    <div className="min-h-screen text-gray-200 flex flex-col bg-slate-900">
-        <Header />
-        {renderPage()}
-        <Footer />
-    </div>
-  );
 };
 
-export default App;
+const App: React.FC = () => {
+    const [page, setPage] = useState('home');
+    const [param, setParam] = useState<string | null>(null);
+    const [appState, setAppState] = useState<AppState>(AppState.IDLE);
+    const [videoResult, setVideoResult] = useState<{
+      objectUrl: string;
+      blob: Blob;
+      uri: string;
+      video: Video;
+    } | null>(null);
+    const [lastGenerationParams, setLastGenerationParams] =
+      useState<GenerateVideoParams | null>(null);
+    const [error, setError] = useState<string | null>(null);
+  
+    const [showApiKeyDialog, setShowApiKeyDialog] = useState(false);
+    const [hasCheckedApiKey, setHasCheckedApiKey] = useState(false);
+    const [pendingGenerationParams, setPendingGenerationParams] =
+      useState<GenerateVideoParams | null>(null);
+  
+    // Parse hash route on initial load and on hash change
+    useEffect(() => {
+      const handleHashChange = () => {
+        const { page, param } = parseRoute();
+        setPage(page);
+        setParam(param);
+        window.scrollTo(0, 0);
+      };
+  
+      window.addEventListener('hashchange', handleHashChange);
+      handleHashChange(); // Initial route parse
+  
+      return () => window.removeEventListener('hashchange', handleHashChange);
+    }, []);
+  
+    const resetToHome = () => {
+      window.location.hash = 'home';
+      setAppState(AppState.IDLE);
+      setVideoResult(null);
+      setError(null);
+      // Keep lastGenerationParams so "Retry" can still work if needed,
+      // but clear the video object to avoid re-entering extend mode incorrectly.
+      if (lastGenerationParams) {
+          const { inputVideoObject, ...rest } = lastGenerationParams;
+          setLastGenerationParams(rest);
+      }
+    };
+  
+    const handleGenerate = useCallback(async (params: GenerateVideoParams) => {
+      setLastGenerationParams(params);
+      setPendingGenerationParams(params);
+  
+      // VEO models require a billed API key.
+      if (!hasCheckedApiKey && (params.model === VeoModel.VEO || params.model === VeoModel.VEO_FAST)) {
+        const hasKey = await window.aistudio.hasSelectedApiKey();
+        if (!hasKey) {
+          setHasCheckedApiKey(true); // Mark as checked to prevent infinite loops
+          setShowApiKeyDialog(true);
+          return;
+        }
+      }
+      
+      setAppState(AppState.LOADING);
+      setVideoResult(null);
+      setError(null);
+      window.location.hash = 'home';
+  
+      try {
+        const result = await generateVideo(params);
+        setVideoResult(result);
+        setAppState(AppState.SUCCESS);
+        // Can only extend 720p videos
+        const canExtend = params.resolution === Resolution.P720;
+        let nextParams = {...params};
+        if (canExtend) {
+            nextParams = {
+              ...params,
+              prompt: '',
+              mode: GenerationMode.EXTEND_VIDEO,
+              inputVideoObject: result.video,
+            };
+        }
+        setLastGenerationParams(nextParams);
+
+      } catch (e) {
+        console.error(e);
+        const errorMessage = e instanceof Error ? e.message : 'An unknown error occurred.';
+        if (errorMessage.includes('Requested entity was not found')) {
+          setError('API Key is invalid or billing is not enabled. Please select a valid key.');
+          setHasCheckedApiKey(false); // Reset key state to allow re-checking
+          setShowApiKeyDialog(true); // Re-prompt user
+          setAppState(AppState.IDLE); // Go back to idle to allow re-submission
+        } else {
+          setError(errorMessage);
+          setAppState(AppState.ERROR);
+        }
+      }
+    }, [hasCheckedApiKey]);
+  
+    const handleApiKeyContinue = async () => {
+      setShowApiKeyDialog(false);
+      await window.aistudio.openSelectKey();
+      // Assume key selection is successful and proceed with generation.
+      if (pendingGenerationParams) {
+        handleGenerate(pendingGenerationParams);
+      }
+    };
+  
+  
+    const handleRetry = () => {
+      if (lastGenerationParams) {
+        // When retrying, use the params that led to the result, not the "extend" params.
+        const retryParams = {...lastGenerationParams};
+        if(retryParams.mode === GenerationMode.EXTEND_VIDEO) {
+            // This is a bit tricky. We don't have the original params.
+            // Let's just reset.
+            resetToHome();
+            return;
+        }
+        handleGenerate(retryParams);
+      }
+    };
+  
+    const handleExtend = () => {
+      if (lastGenerationParams && lastGenerationParams.mode === GenerationMode.EXTEND_VIDEO) {
+        setAppState(AppState.IDLE);
+        setVideoResult(null);
+        setError(null);
+        // The lastGenerationParams are already set up for extension mode.
+        // The PromptForm will be initialized with these values.
+      }
+    };
+  
+    const renderContent = () => {
+      if (page === 'home') {
+        return (
+          <main className="w-full max-w-4xl mx-auto flex-grow flex flex-col items-center justify-center p-4">
+              <div className="w-full text-center mb-8">
+                  <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-orange-400 to-amber-300 bg-clip-text text-transparent">
+                      Turn Ideas Into Roasts
+                  </h2>
+                  <p className="text-lg text-slate-400 mt-4 max-w-2xl mx-auto">
+                      Just type a prompt and let our AI do the roasting. Create hilarious, shareable videos in seconds.
+                  </p>
+              </div>
+  
+              <div className="w-full flex items-center justify-center min-h-[200px]">
+                  {appState === AppState.IDLE && (
+                      <PromptForm onGenerate={handleGenerate} initialValues={lastGenerationParams} />
+                  )}
+                  {appState === AppState.LOADING && <LoadingIndicator />}
+                  {appState === AppState.SUCCESS && videoResult && (
+                      <VideoResult
+                          videoUrl={videoResult.objectUrl}
+                          videoBlob={videoResult.blob}
+                          onRetry={handleRetry}
+                          onNewVideo={resetToHome}
+                          onExtend={handleExtend}
+                          canExtend={lastGenerationParams?.mode === GenerationMode.EXTEND_VIDEO && lastGenerationParams?.inputVideoObject != null}
+                      />
+                  )}
+                  {appState === AppState.ERROR && (
+                      <div className="text-center p-8 bg-red-900/30 rounded-lg border border-red-800">
+                          <h3 className="text-2xl font-bold text-red-400">An Error Occurred</h3>
+                          <p className="text-red-300 mt-2 max-w-lg">{error}</p>
+                          <div className="mt-6 flex justify-center gap-4">
+                              <button onClick={handleRetry} className="px-6 py-2 bg-slate-600 hover:bg-slate-500 rounded-lg font-semibold">Try Again</button>
+                              <button onClick={resetToHome} className="px-6 py-2 bg-orange-600 hover:bg-orange-500 rounded-lg font-semibold">Start Over</button>
+                          </div>
+                      </div>
+                  )}
+              </div>
+          </main>
+        );
+      }
+  
+      if (page === 'article' && param && articlesData[param as ArticleSlug]) {
+        const article = articlesData[param as ArticleSlug];
+        return <ArticlePage title={article.title}>{article.content}</ArticlePage>;
+      }
+  
+      if (page === 'blog') {
+          return <BlogPage />;
+      }
+  
+      if (page === 'gallery') {
+          return <GalleryPage />;
+      }
+  
+      if (page === 'howitworks') {
+          return <HowItWorksPage />;
+      }
+  
+      if (page === 'contact') {
+          return <ContactPage />;
+      }
+      
+      const infoPageKey = page as keyof typeof infoPageData;
+      if (infoPageData[infoPageKey]) {
+          const info = infoPageData[infoPageKey];
+          return <InfoPage title={info.title}>{info.content}</InfoPage>;
+      }
+  
+      // Fallback to home if route is unknown, but only if it's not already home.
+      // This prevents a render loop if the initial hash is bad.
+      if (page !== 'home') {
+          window.location.hash = 'home';
+      }
+      return null;
+    };
+  
+  
+    return (
+      <div className="min-h-screen flex flex-col bg-slate-900 text-gray-200">
+        {showApiKeyDialog && <ApiKeyDialog onContinue={handleApiKeyContinue} />}
+        <Header />
+        <div className="flex-grow flex flex-col">
+            {renderContent()}
+        </div>
+        <Footer />
+      </div>
+    );
+  }
+  
+  export default App;
