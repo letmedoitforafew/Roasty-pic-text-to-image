@@ -387,9 +387,6 @@ const App: React.FC = () => {
         case AppState.IDLE:
             return (
                 <div className="flex flex-col items-center text-center w-full max-w-4xl animate-fade-in">
-                    <button onClick={handleNewVideo} className="group mb-4">
-                        <RoastyPitLogoIcon className="w-24 h-24 text-orange-400 transition-all duration-300 group-hover:scale-110 group-hover:drop-shadow-[0_0_8px_#f97316]" />
-                    </button>
                     <h1 className="text-4xl sm:text-5xl font-bold tracking-tight bg-gradient-to-r from-amber-300 via-orange-500 to-red-600 bg-clip-text text-transparent mb-3">
                         Generate Viral Video Roasts
                     </h1>
@@ -449,16 +446,14 @@ const App: React.FC = () => {
     <div className="flex flex-col min-h-screen bg-slate-900 text-white">
       <main className="flex-grow flex flex-col items-center justify-center p-4 sm:p-8">
         <div className="w-full max-w-4xl mx-auto flex flex-col items-center">
-          {appState !== AppState.IDLE && !activeArticle && (
-            <div className="mb-8">
-              <button onClick={handleNewVideo} className="flex items-center gap-3 group" aria-label="Go to homepage">
-                <RoastyPitLogoIcon className="w-10 h-10 text-orange-400 transition-all duration-300 group-hover:scale-110 group-hover:drop-shadow-[0_0_8px_#f97316]" />
-                <h1 className="text-3xl font-bold tracking-tight bg-gradient-to-r from-amber-300 via-orange-500 to-red-600 bg-clip-text text-transparent">
-                  RoastyPit
-                </h1>
-              </button>
-            </div>
-          )}
+          <div className="mb-8">
+            <button onClick={handleNewVideo} className="flex items-center gap-3 group" aria-label="Go to homepage">
+              <RoastyPitLogoIcon className="w-10 h-10 text-orange-400 transition-all duration-300 group-hover:scale-110 group-hover:drop-shadow-[0_0_8px_#f97316]" />
+              <h1 className="text-3xl font-bold tracking-tight bg-gradient-to-r from-amber-300 via-orange-500 to-red-600 bg-clip-text text-transparent">
+                RoastyPit
+              </h1>
+            </button>
+          </div>
           {renderContent()}
         </div>
       </main>
