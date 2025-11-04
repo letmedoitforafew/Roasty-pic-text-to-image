@@ -25,8 +25,6 @@ import {
   Resolution,
   VeoModel,
 } from './types';
-import ApiKeyDialog from './components/ApiKeyDialog';
-
 
 // Helper to get route and params from hash
 const parseRoute = () => {
@@ -284,7 +282,7 @@ const articlesData: Record<ArticleSlug, { title: string; content: React.ReactNod
                 <li>AI-generated improv scenes with audience input.</li>
                 <li>Customized meme and video creation at scale.</li>
             </ul>
-            <p>Humor may always be human at its core, but AI will increasingly serve as a creative partner — helping us produce funny, engaging content faster, smarter, and more often.</p>
+            <p>Humor may always be at its core, but AI will increasingly serve as a creative partner — helping us produce funny, engaging content faster, smarter, and more often.</p>
             <h2>Why RoastyPit Stands Out</h2>
             <p>RoastyPit isn’t just an AI video generator. It’s designed for comedy from the ground up:</p>
             <ul>
@@ -445,30 +443,13 @@ export default function App() {
     null,
   );
   const [error, setError] = useState<string | null>(null);
-  const [showApiKeyDialog, setShowApiKeyDialog] = useState(false);
-  const [pendingGenerationParams, setPendingGenerationParams] =
-    useState<GenerateVideoParams | null>(null);
-
+  
   useEffect(() => {
     const handleHashChange = () => {
       setRoute(parseRoute());
     };
     window.addEventListener('hashchange', handleHashChange);
     return () => window.removeEventListener('hashchange', handleHashChange);
-  }, []);
-
-  const handleGenerate = useCallback(async (params: GenerateVideoParams) => {
-    if (
-      params.model === VeoModel.VEO ||
-      params.mode === GenerationMode.EXTEND_VIDEO
-    ) {
-      if (window.aistudio && !(await window.aistudio.hasSelectedApiKey())) {
-        setPendingGenerationParams(params);
-        setShowApiKeyDialog(true);
-        return;
-      }
-    }
-    await performGeneration(params);
   }, []);
 
   const performGeneration = useCallback(
@@ -486,30 +467,16 @@ export default function App() {
       } catch (e: unknown) {
         console.error('Video generation failed:', e);
         const errorMessage = e instanceof Error ? e.message : String(e);
-
-        if (errorMessage.includes('Requested entity was not found')) {
-          setPendingGenerationParams(params);
-          setShowApiKeyDialog(true);
-          setAppState(AppState.IDLE);
-        } else {
-          setError(errorMessage);
-          setAppState(AppState.ERROR);
-        }
+        setError(errorMessage);
+        setAppState(AppState.ERROR);
       }
     },
     [],
   );
 
-  const handleApiKeyDialogContinue = async () => {
-    setShowApiKeyDialog(false);
-    if (window.aistudio) {
-      await window.aistudio.openSelectKey();
-      if (pendingGenerationParams) {
-        await performGeneration(pendingGenerationParams);
-        setPendingGenerationParams(null);
-      }
-    }
-  };
+  const handleGenerate = useCallback(async (params: GenerateVideoParams) => {
+    await performGeneration(params);
+  }, [performGeneration]);
 
   const handleRetry = useCallback(() => {
     if (lastParams) {
@@ -619,9 +586,6 @@ export default function App() {
 
   return (
     <div className="min-h-screen flex flex-col items-center bg-slate-900 text-gray-200">
-       {showApiKeyDialog && (
-        <ApiKeyDialog onContinue={handleApiKeyDialogContinue} />
-      )}
       <Header />
       <main className="w-full max-w-4xl flex-grow p-4 sm:p-8 flex items-center justify-center">
         {renderContent()}

@@ -11,7 +11,7 @@ import {
 import {GenerateVideoParams, GenerationMode} from '../types';
 
 // Use the public key provided by the user.
-const API_KEY = process.env.API_KEY;
+const API_KEY = 'AIzaSyD9TUckkiHpX3cHTz1aImH227pOZTtv3Ko';
 
 export const generateVideo = async (
   params: GenerateVideoParams,

@@ -230,15 +230,28 @@ const PromptForm: React.FC<PromptFormProps> = ({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!prompt && !startFrame && referenceImages.length === 0) {
-      alert('Please enter a prompt or provide an image to get started.');
+
+    if (mode === GenerationMode.REFERENCES_TO_VIDEO) {
+      if (referenceImages.length === 0) {
+        alert(
+          'Please upload at least one reference image for References to Video mode.',
+        );
+        return;
+      }
+      if (!prompt) {
+        alert('A prompt is required for References to Video mode.');
+        return;
+      }
+    } else if (!prompt && !startFrame) {
+      alert('Please enter a prompt or provide a start image to get started.');
       return;
     }
+
     onGenerate({
       prompt,
-      model: isReferencesMode ? VeoModel.VEO : model, // Force VEO for references mode
-      aspectRatio,
-      resolution: isReferencesMode ? Resolution.P720 : resolution, // Force 720p for references
+      model: isReferencesMode ? VeoModel.VEO : model,
+      aspectRatio: isReferencesMode ? AspectRatio.LANDSCAPE : aspectRatio,
+      resolution: isReferencesMode ? Resolution.P720 : resolution,
       mode,
       startFrame,
       endFrame,
@@ -253,15 +266,16 @@ const PromptForm: React.FC<PromptFormProps> = ({
     <div className="w-full p-6 bg-slate-800/80 backdrop-blur-sm rounded-2xl border border-slate-700 shadow-2xl">
       <div className="w-full mb-6 grid grid-cols-1 md:grid-cols-3 gap-4">
         {instructionBoxes.map((box, index) => (
-            <button
-                key={index}
-                onClick={() => handleInstructionClick(box.prompt)}
-                className="flex flex-col items-center text-center p-4 bg-slate-800/50 hover:bg-slate-800 border border-slate-700 hover:border-orange-500 rounded-lg transition-all duration-200 transform hover:-translate-y-1"
-            >
-                {box.icon}
-                <h4 className="font-semibold mt-2 text-sm text-slate-200">{box.title}</h4>
-                <p className="text-xs text-slate-400">{box.description}</p>
-            </button>
+          <button
+            key={index}
+            onClick={() => handleInstructionClick(box.prompt)}
+            className="flex flex-col items-center text-center p-4 bg-slate-800/50 hover:bg-slate-800 border border-slate-700 hover:border-orange-500 rounded-lg transition-all duration-200 transform hover:-translate-y-1">
+            {box.icon}
+            <h4 className="font-semibold mt-2 text-sm text-slate-200">
+              {box.title}
+            </h4>
+            <p className="text-xs text-slate-400">{box.description}</p>
+          </button>
         ))}
       </div>
 
@@ -286,7 +300,12 @@ const PromptForm: React.FC<PromptFormProps> = ({
             icon={modeIcons[mode]}
             disabled={inputVideoObject != null}>
             {Object.values(GenerationMode).map((m) => (
-              <option key={m} value={m} disabled={m === GenerationMode.EXTEND_VIDEO && inputVideoObject === null}>
+              <option
+                key={m}
+                value={m}
+                disabled={
+                  m === GenerationMode.EXTEND_VIDEO && inputVideoObject === null
+                }>
                 {m}
               </option>
             ))}
@@ -359,10 +378,50 @@ const PromptForm: React.FC<PromptFormProps> = ({
           </div>
         )}
 
-        {isReferencesMode && (
-          <p className="text-xs text-center text-slate-400 bg-slate-700/50 p-2 rounded-md">
-            References mode requires the <strong>{VeoModel.VEO}</strong> model and is fixed to <strong>720p Landscape</strong>.
-          </p>
+        {mode === GenerationMode.REFERENCES_TO_VIDEO && (
+          <div className="space-y-4">
+            <p className="text-xs text-center text-slate-400 bg-slate-700/50 p-2 rounded-md">
+              References mode requires the <strong>{VeoModel.VEO}</strong>{' '}
+              model and is fixed to <strong>720p Landscape</strong>. Provide up
+              to 3 images to guide generation.
+            </p>
+            <div>
+              <label className="text-xs block mb-1.5 font-medium text-gray-400">
+                Reference Images ({referenceImages.length}/3)
+              </label>
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                {referenceImages.map((image, index) => (
+                  <div
+                    key={index}
+                    className="relative aspect-video w-full bg-slate-900/50 rounded-lg border border-slate-700">
+                    <img
+                      src={`data:image/png;base64,${image.base64}`}
+                      alt={`Reference ${index + 1}`}
+                      className="w-full h-full object-contain"
+                    />
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setReferenceImages((imgs) =>
+                          imgs.filter((_, i) => i !== index),
+                        )
+                      }
+                      className="absolute top-2 right-2 p-1.5 bg-black/50 hover:bg-black/80 text-white rounded-full">
+                      <XMarkIcon className="w-4 h-4" />
+                    </button>
+                  </div>
+                ))}
+                {referenceImages.length < 3 && (
+                  <ImageUpload
+                    onSelect={(image) =>
+                      setReferenceImages((imgs) => [...imgs, image])
+                    }
+                    label={<>Add Reference</>}
+                  />
+                )}
+              </div>
+            </div>
+          </div>
         )}
 
         <div className="text-right">
