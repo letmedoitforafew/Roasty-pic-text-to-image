@@ -3,33 +3,15 @@
  * SPDX-License-Identifier: Apache-2.0
 */
 import React, { useState, FormEvent } from 'react';
-import { SendIcon, XMarkIcon } from './icons';
-
-interface ContactPageProps {
-  onClose: () => void;
-}
+import { SendIcon } from './icons';
 
 type SubmissionStatus = 'idle' | 'sending' | 'success';
 
-const ContactPage: React.FC<ContactPageProps> = ({ onClose }) => {
+const ContactPage: React.FC = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
   const [status, setStatus] = useState<SubmissionStatus>('idle');
-
-  // Handle keydown for accessibility
-  React.useEffect(() => {
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        onClose();
-      }
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => {
-      window.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [onClose]);
-
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -51,86 +33,68 @@ const ContactPage: React.FC<ContactPageProps> = ({ onClose }) => {
   const isFormDisabled = status === 'sending' || status === 'success';
 
   return (
-    <div
-      className="fixed inset-0 bg-slate-900/80 backdrop-blur-sm flex items-center justify-center z-50 p-4"
-      onClick={onClose}
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="contact-page-title"
-    >
-      <div
-        className="bg-slate-800 border border-slate-700 rounded-2xl shadow-xl max-w-2xl w-full flex flex-col"
-        onClick={(e) => e.stopPropagation()}
-      >
-        <header className="flex items-center justify-between p-6 border-b border-slate-700">
-          <h2 id="contact-page-title" className="text-2xl font-bold text-white">Contact Us</h2>
-          <button
-            onClick={onClose}
-            className="p-2 rounded-full hover:bg-slate-700 text-slate-400 hover:text-white transition-colors"
-            aria-label="Close dialog"
-          >
-            <XMarkIcon className="w-6 h-6" />
-          </button>
-        </header>
-        <main className="p-8">
-          {status === 'success' ? (
-            <div className="text-center p-8 bg-green-900/30 rounded-lg">
-                <h3 className="text-2xl font-bold text-green-400">Message Sent!</h3>
-                <p className="text-green-300 mt-2">Thank you for reaching out. We'll get back to you shortly.</p>
-            </div>
-          ) : (
-            <form onSubmit={handleSubmit} className="space-y-6">
-                <p className="text-slate-400 mb-6">Have a question or feedback? Fill out the form below and we'll get in touch.</p>
-                <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">Full Name</label>
-                    <input
-                        type="text"
-                        id="name"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                        required
-                        disabled={isFormDisabled}
-                        className="w-full bg-slate-900/50 border border-slate-600 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-orange-500 focus:border-orange-500 disabled:bg-slate-700/50 disabled:cursor-not-allowed transition-colors"
-                    />
-                </div>
-                <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">Email Address</label>
-                    <input
-                        type="email"
-                        id="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                        disabled={isFormDisabled}
-                        className="w-full bg-slate-900/50 border border-slate-600 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-orange-500 focus:border-orange-500 disabled:bg-slate-700/50 disabled:cursor-not-allowed transition-colors"
-                    />
-                </div>
-                <div>
-                    <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">Message</label>
-                    <textarea
-                        id="message"
-                        value={message}
-                        onChange={(e) => setMessage(e.target.value)}
-                        rows={5}
-                        required
-                        disabled={isFormDisabled}
-                        className="w-full bg-slate-900/50 border border-slate-600 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-orange-500 focus:border-orange-500 disabled:bg-slate-700/50 disabled:cursor-not-allowed transition-colors resize-none"
-                    />
-                </div>
-                <div className="text-right">
-                    <button
-                        type="submit"
-                        disabled={isFormDisabled || !name || !email || !message}
-                        className="inline-flex items-center gap-2 px-8 py-3 bg-orange-600 hover:bg-orange-700 text-white font-semibold rounded-lg transition-colors disabled:bg-slate-700 disabled:cursor-not-allowed"
-                    >
-                        <SendIcon className="w-5 h-5" />
-                        {status === 'sending' ? 'Sending...' : 'Send Message'}
-                    </button>
-                </div>
-            </form>
-          )}
-        </main>
-      </div>
+    <div className="bg-slate-800/50 border border-slate-700 rounded-2xl shadow-xl max-w-2xl w-full flex flex-col">
+      <header className="p-6 border-b border-slate-700">
+        <h2 id="contact-page-title" className="text-2xl font-bold text-white">Contact Us</h2>
+      </header>
+      <main className="p-8">
+        {status === 'success' ? (
+          <div className="text-center p-8 bg-green-900/30 rounded-lg">
+              <h3 className="text-2xl font-bold text-green-400">Message Sent!</h3>
+              <p className="text-green-300 mt-2">Thank you for reaching out. We'll get back to you shortly.</p>
+          </div>
+        ) : (
+          <form onSubmit={handleSubmit} className="space-y-6">
+              <p className="text-slate-400 mb-6">Have a question or feedback? Fill out the form below and we'll get in touch.</p>
+              <div>
+                  <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">Full Name</label>
+                  <input
+                      type="text"
+                      id="name"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      required
+                      disabled={isFormDisabled}
+                      className="w-full bg-slate-900/50 border border-slate-600 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-orange-500 focus:border-orange-500 disabled:bg-slate-700/50 disabled:cursor-not-allowed transition-colors"
+                  />
+              </div>
+              <div>
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">Email Address</label>
+                  <input
+                      type="email"
+                      id="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      required
+                      disabled={isFormDisabled}
+                      className="w-full bg-slate-900/50 border border-slate-600 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-orange-500 focus:border-orange-500 disabled:bg-slate-700/50 disabled:cursor-not-allowed transition-colors"
+                  />
+              </div>
+              <div>
+                  <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">Message</label>
+                  <textarea
+                      id="message"
+                      value={message}
+                      onChange={(e) => setMessage(e.target.value)}
+                      rows={5}
+                      required
+                      disabled={isFormDisabled}
+                      className="w-full bg-slate-900/50 border border-slate-600 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-orange-500 focus:border-orange-500 disabled:bg-slate-700/50 disabled:cursor-not-allowed transition-colors resize-none"
+                  />
+              </div>
+              <div className="text-right">
+                  <button
+                      type="submit"
+                      disabled={isFormDisabled || !name || !email || !message}
+                      className="inline-flex items-center gap-2 px-8 py-3 bg-orange-600 hover:bg-orange-700 text-white font-semibold rounded-lg transition-colors disabled:bg-slate-700 disabled:cursor-not-allowed"
+                  >
+                      <SendIcon className="w-5 h-5" />
+                      {status === 'sending' ? 'Sending...' : 'Send Message'}
+                  </button>
+              </div>
+          </form>
+        )}
+      </main>
     </div>
   );
 };
